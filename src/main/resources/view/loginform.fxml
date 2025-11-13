@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import java.lang.*?>
+<?import java.util.*?>
+<?import javafx.scene.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.text.Font?>
+<AnchorPane prefHeight="647.0" prefWidth="902.0" style="-fx-background-color: linear-gradient(to bottom, #000000 0%, #666666 100%);;" xmlns="http://javafx.com/javafx/25" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.LoginFormController">
+    <children>
+        <ImageView fx:id="imageView" fitHeight="338.0" fitWidth="324.0" layoutX="118.0" layoutY="162.0" pickOnBounds="true" preserveRatio="true" style="-fx-background-radius: 100; -fx-border-radius: 100;">
+            <image>
+                <Image url="@../img/WhatsApp%20Image%202025-10-31%20at%2009.50.58_ed3eec30gray.jpg" />
+            </image>
+        </ImageView>
+        <Label layoutX="497.0" layoutY="162.0" prefHeight="118.0" prefWidth="287.0" text="SING IN" textFill="WHITE">
+            <font>
+                <Font name="Impact" size="96.0" />
+            </font>
+        </Label>
+        <TextField fx:id="txtUsername" layoutX="501.0" layoutY="280.0" prefHeight="50.0" prefWidth="279.0" style="-fx-background-radius: 10;" />
+        <PasswordField fx:id="txtPassword" layoutX="501.0" layoutY="361.0" prefHeight="50.0" prefWidth="279.0" style="-fx-background-radius: 10;" />
+        <Button layoutX="679.0" layoutY="442.0" mnemonicParsing="false" onAction="#btnClickedSingin" prefHeight="43.0" prefWidth="85.0" style="-fx-background-color: C82E2E; -fx-background-radius: 10;" text="SING IN" textFill="WHITE">
+            <font>
+                <Font name="Impact" size="15.0" />
+            </font>
+        </Button>
+    </children>
+
+</AnchorPane>
