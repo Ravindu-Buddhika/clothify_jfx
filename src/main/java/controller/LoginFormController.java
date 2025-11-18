@@ -9,11 +9,15 @@ import javafx.scene.image.ImageView;
 import javafx.scene.shape.Rectangle;
 import model.dto.LoggingDataDTO;
 import model.dto.UserDTO;
+import service.LoginService;
+import service.LoginServiceIMPL;
 
 import java.net.URL;
 import java.util.ResourceBundle;
 
 public class LoginFormController implements Initializable {
+    LoginService loginService=new LoginServiceIMPL();
+    UserDTO userDTO=new UserDTO();
 
     @FXML
     private ImageView imageView;
@@ -30,7 +34,20 @@ public class LoginFormController implements Initializable {
                 txtUsername.getText(),
                 txtPassword.getText()
         );
+        checkUser(loggingDataDTO);
     }
+
+    public void checkUser(LoggingDataDTO loggingDataDTO){
+        String type= loginService.checkUser(loggingDataDTO);
+
+        if ("Admin".equals(type)) {
+
+        } else if ("Staff".equals(type)) {
+
+        }
+    }
+
+
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
         Rectangle clip = new Rectangle(imageView.getFitWidth(), imageView.getFitHeight());
