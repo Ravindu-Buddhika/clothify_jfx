@@ -1,5 +1,6 @@
 package model.entity;
 
+import jakarta.persistence.Entity;
 import jakarta.persistence.Id;
 import lombok.*;
 
@@ -8,6 +9,7 @@ import lombok.*;
 @AllArgsConstructor
 @NoArgsConstructor
 @ToString
+@Entity
 public class ProductEntity {
     @Id
     private String code;
