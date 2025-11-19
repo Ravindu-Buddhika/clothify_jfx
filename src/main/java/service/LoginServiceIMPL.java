@@ -1,70 +1,115 @@
 package service;
 
 import javafx.scene.control.Alert;
+import model.dto.AdminDTO;
 import model.dto.LoggingDataDTO;
-import model.dto.UserDTO;
+import model.dto.StaffDTO;
+import model.entity.AdminEntity;
+import model.entity.StaffEntity;
 import model.entity.UserEntity;
-import org.hibernate.Session;
-import org.hibernate.query.Query;
-import util.HibernateUtil;
+import repository.LoginRepository;
+import repository.LoginRepositoryIMPL;
+
+import java.sql.SQLException;
 
 public class LoginServiceIMPL implements LoginService{
-    UserDTO userDTO=new UserDTO();
-    LoggingDataDTO loggingData=null;
+    LoginRepository repository;
+    UserEntity userEntity=null;
 
-    @Override
-    public String checkUser(LoggingDataDTO loggingDataDTO){
-        loggingData=loggingDataDTO;
-        Session session = HibernateUtil.getSession();
-
+    {
         try {
-            String hql = "FROM UserEntity u WHERE u.name = :name";
-            Query<UserEntity> query = session.createQuery(hql, UserEntity.class);
-            query.setParameter("name", loggingDataDTO.getName());
-
-            UserEntity userEntity = query.uniqueResult();
-
-            if (userEntity != null) {
-                userDTO = new UserDTO(
-                        userEntity.getName(),
-                        userEntity.getPassword(),
-                        userEntity.getType()
-                );
-            }
-
-        } finally {
-            session.close();
+            repository = new LoginRepositoryIMPL();
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
         }
-
-        int status= checkPassword();
-        if(status==1){
-            return userDTO.getType();
-        }
-
-        return null;
     }
 
-    public int checkPassword(){
-        String password= userDTO.getPassword();
-
-        if (userDTO != null) {
+    @Override
+    public String loging(LoggingDataDTO loggingDataDTO) {
+        try {
+            userEntity = repository.checkUser(loggingDataDTO);
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
+        if (userEntity == null) {
+            // No user found
             Alert alert = new Alert(Alert.AlertType.ERROR); // or CONFIRMATION, WARNING, ERROR
             alert.setTitle("Invalid UserName");
             alert.setHeaderText(null);
             alert.setContentText("Invalid UserName! try again");
             alert.showAndWait();
-            return 404;
-        } else{
-            if (loggingData.getPassword().equals(password)){
-                return 1;
-            }else {
+        }else {
+            String password = userEntity.getPassword();
+            if (loggingDataDTO.getPassword().equals(password)) {
+                String type=checkUserType();
+                return type;
+                // Success
+            } else {
+                // Wrong password
+
                 Alert alert = new Alert(Alert.AlertType.ERROR); // or CONFIRMATION, WARNING, ERROR
                 alert.setTitle("Incorrect Password");
                 alert.setHeaderText(null);
                 alert.setContentText("Incorrect password! try again");
                 alert.showAndWait();
-                return 0;
+
+                return "Error";
             }
         }
+        return null;
     }
+
+    public String checkUserType(){
+
+        if(userEntity.getType().equals("Admin")){
+            return "Admin";
+        } else {
+            return "Staff";
+        }
+    }
+
+    @Override
+    public AdminDTO getAdmin(){
+        AdminDTO adminDTO=new AdminDTO();
+        AdminEntity adminEntity= null;
+        try {
+            adminEntity = repository.getAdmin();
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
+
+        adminDTO = new AdminDTO(
+                adminEntity.getId(),
+                adminEntity.getName(),
+                adminEntity.getMobile(),
+                adminEntity.getEmail()
+        );
+
+
+        return adminDTO;
+    }
+
+    @Override
+    public StaffDTO getStaff(){
+        StaffDTO staffDTO=new StaffDTO();
+        StaffEntity staffEntity = null;
+        try {
+            staffEntity = repository.getStaff();
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
+        staffDTO=new StaffDTO(
+                staffEntity.getId(),
+                staffEntity.getName(),
+                staffEntity.getMobile(),
+                staffEntity.getEmail()
+        );
+
+        return staffDTO;
+    }
+
+//    @Override
+//    public String checkUser(LoggingDataDTO loggingDataDTO) {
+//        return repository.checkUser(loggingDataDTO);
+//    }
 }

@@ -7,7 +7,9 @@ import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
 import javafx.scene.image.ImageView;
 import javafx.scene.shape.Rectangle;
+import model.dto.AdminDTO;
 import model.dto.LoggingDataDTO;
+import model.dto.StaffDTO;
 import model.dto.UserDTO;
 import service.LoginService;
 import service.LoginServiceIMPL;
@@ -38,12 +40,14 @@ public class LoginFormController implements Initializable {
     }
 
     public void checkUser(LoggingDataDTO loggingDataDTO){
-        String type= loginService.checkUser(loggingDataDTO);
+        String type=loginService.loging(loggingDataDTO);
 
         if ("Admin".equals(type)) {
-
+            AdminDTO adminDTO=loginService.getAdmin();
+            System.out.println("hello admin");
         } else if ("Staff".equals(type)) {
-
+            StaffDTO staffDTO=loginService.getStaff();
+            System.out.println("hello staff");
         }
     }
 
