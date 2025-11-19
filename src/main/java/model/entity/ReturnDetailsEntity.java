@@ -9,9 +9,7 @@ import lombok.*;
 @AllArgsConstructor
 @NoArgsConstructor
 @ToString
-@Entity
 public class ReturnDetailsEntity {
-    @Id
     private String id;
     private int qty;
 }

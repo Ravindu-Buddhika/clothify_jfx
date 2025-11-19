@@ -9,9 +9,8 @@ import lombok.*;
 @AllArgsConstructor
 @NoArgsConstructor
 @ToString
-@Entity
 public class UserEntity {
-    @Id
+    private String id;
     private String name;
     private String password;
     private String type;

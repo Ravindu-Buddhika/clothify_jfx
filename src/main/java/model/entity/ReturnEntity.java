@@ -11,9 +11,7 @@ import java.time.LocalDate;
 @AllArgsConstructor
 @NoArgsConstructor
 @ToString
-@Entity
 public class ReturnEntity {
-    @Id
     private String id;
     private LocalDate date;
     private double total;

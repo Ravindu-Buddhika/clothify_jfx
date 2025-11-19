@@ -9,11 +9,10 @@ import lombok.*;
 @AllArgsConstructor
 @NoArgsConstructor
 @ToString
-@Entity
 public class StaffEntity {
-    @Id
     private String id;
     private String name;
     private String mobile;
     private String email;
+    private String user_id;
 }
