@@ -2,24 +2,30 @@ package controller;
 
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
 import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
 import javafx.scene.image.ImageView;
 import javafx.scene.shape.Rectangle;
+import javafx.stage.Stage;
 import model.dto.AdminDTO;
 import model.dto.LoggingDataDTO;
 import model.dto.StaffDTO;
 import model.dto.UserDTO;
 import service.LoginService;
-import service.LoginServiceIMPL;
+import service.IMPL.LoginServiceIMPL;
 
+import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
 
 public class LoginFormController implements Initializable {
     LoginService loginService=new LoginServiceIMPL();
     UserDTO userDTO=new UserDTO();
+    Stage stage=new Stage();
 
     @FXML
     private ImageView imageView;
@@ -44,10 +50,35 @@ public class LoginFormController implements Initializable {
 
         if ("Admin".equals(type)) {
             AdminDTO adminDTO=loginService.getAdmin();
-            System.out.println("hello admin");
+            try {
+                FXMLLoader loader = new FXMLLoader(getClass().getResource("/view/adminDashbode.fxml"));
+                Parent root = loader.load();
+
+                AdminDashbodeController adminDashbode=loader.getController();
+                adminDashbode.loadUser(adminDTO);
+                stage.setScene(new Scene(root));
+            } catch (IOException e) {
+                throw new RuntimeException(e);
+            }
+            stage.setResizable(false);
+            stage.show();
+//            System.out.println("hello admin");
         } else if ("Staff".equals(type)) {
             StaffDTO staffDTO=loginService.getStaff();
-            System.out.println("hello staff");
+            try {
+                FXMLLoader loader = new FXMLLoader(getClass().getResource("/view/staffDashbode.fxml"));
+                Parent root = loader.load();
+
+                StaffDashbodeController staffDashbode=loader.getController();
+                staffDashbode.loadUser(staffDTO);
+                stage.setScene(new Scene(root));
+
+            } catch (IOException e) {
+                throw new RuntimeException(e);
+            }
+            stage.setResizable(false);
+            stage.show();
+//          System.out.println("hello staff");
         }
     }
 

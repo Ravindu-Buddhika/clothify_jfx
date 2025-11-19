@@ -1,4 +1,4 @@
-package service;
+package service.IMPL;
 
 import javafx.scene.control.Alert;
 import model.dto.AdminDTO;
@@ -8,11 +8,12 @@ import model.entity.AdminEntity;
 import model.entity.StaffEntity;
 import model.entity.UserEntity;
 import repository.LoginRepository;
-import repository.LoginRepositoryIMPL;
+import repository.IMPL.LoginRepositoryIMPL;
+import service.LoginService;
 
 import java.sql.SQLException;
 
-public class LoginServiceIMPL implements LoginService{
+public class LoginServiceIMPL implements LoginService {
     LoginRepository repository;
     UserEntity userEntity=null;
 
