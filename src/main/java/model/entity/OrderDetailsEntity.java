@@ -11,5 +11,9 @@ import lombok.*;
 @ToString
 public class OrderDetailsEntity {
     private String id;
+    private String orderID;
+    private String productID;
+    private int dis;
+    private double price;
     private int qty;
 }
