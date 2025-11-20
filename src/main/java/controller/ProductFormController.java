@@ -1,24 +1,35 @@
 package controller;
 
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
+import javafx.fxml.Initializable;
 import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.*;
+import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.input.KeyEvent;
 import javafx.scene.input.MouseEvent;
 import javafx.stage.Stage;
 import model.dto.AdminDTO;
+import model.dto.ProductDTO;
 import model.dto.StaffDTO;
+import service.IMPL.ProductServiceIMPL;
+import service.ProductService;
 
 import java.io.IOException;
+import java.net.URL;
+import java.util.ResourceBundle;
 
-public class ProductFormController {
+public class ProductFormController implements Initializable {
     Stage stage=new Stage();
     AdminDTO adminDTO=null;
     StaffDTO staffDTO=null;
+    ObservableList<ProductDTO> item = FXCollections.observableArrayList();
+    ProductService productService=new ProductServiceIMPL();
 
     @FXML
     private ToggleGroup catagoryGroups;
@@ -48,7 +59,7 @@ public class ProductFormController {
     private TableColumn<?, ?> colSupplier;
 
     @FXML
-    private TableView<?> tblProduct;
+    private TableView<ProductDTO> tblProduct;
 
     @FXML
     private ToggleGroup genderGroup;
@@ -142,7 +153,7 @@ public class ProductFormController {
 
     @FXML
     void btnClickedAdd(ActionEvent event) {
-
+        clearFields();
     }
 
     @FXML
@@ -360,5 +371,60 @@ public class ProductFormController {
         staffDTO=staff;
     }
 
+    @Override
+    public void initialize(URL url, ResourceBundle resourceBundle) {
+        colProductCode.setCellValueFactory(new PropertyValueFactory<>("code"));
+        colProductName.setCellValueFactory(new PropertyValueFactory<>("name"));
+        colPrice.setCellValueFactory(new PropertyValueFactory<>("price"));
+        colDiscount.setCellValueFactory(new PropertyValueFactory<>("dis"));
+        colCatagory.setCellValueFactory(new PropertyValueFactory<>("category"));
+        colGender.setCellValueFactory(new PropertyValueFactory<>("gender"));
+        colQuntityOnHand.setCellValueFactory(new PropertyValueFactory<>("qtyOnHand"));
+        colSupplier.setCellValueFactory(new PropertyValueFactory<>("supplierID"));
+        
+        loadProducts();
+
+        tblProduct.getSelectionModel().selectedItemProperty().addListener((obs, oldVal, newVal) -> {
+            if (newVal != null) {
+                txtProductCode.setText(newVal.getCode());
+                txtProductName.setText(newVal.getName());
+                txtDiscount.setText(String.valueOf(newVal.getDis()));
+                txtSupplier.setText(newVal.getSupplierID());
+                txtQuantity.setText(String.valueOf(newVal.getQtyOnHand()));
+                txtPrice.setText(String.valueOf(newVal.getPrice()));
+
+                switch (newVal.getGender().toLowerCase()) {
+                    case "men": rbMens.setSelected(true); break;
+                    case "women": rbWomens.setSelected(true);break;
+                    case "unisex": rbUnisex.setSelected(true); break;
+                }
+                switch (newVal.getCategory().toLowerCase()) {
+                    case "Tops": rbTops.setSelected(true); break;
+                    case "Bottoms": rbBottoms.setSelected(true); break;
+                    case "Footware": rbFootware.setSelected(true); break;
+                    case "Accsesories": rbAccsesories.setSelected(true); break;
+                }
+
+            }
+        });
+    }
+
+    private void loadProducts() {
+        item.clear();
+        item=productService.getAllProducts();
+        tblProduct.setItems(item);
+    }
+
+    public void clearFields() {
+        txtProductCode.clear();
+        txtProductName.clear();
+        txtDiscount.clear();
+        txtSupplier.clear();
+        txtQuantity.clear();
+        txtPrice.clear();
+        genderGroup.selectToggle(null);
+        catagoryGroups.selectToggle(null);
+
+    }
 }
 
