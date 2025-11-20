@@ -11,11 +11,15 @@ import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
 import javafx.scene.input.KeyEvent;
 import javafx.stage.Stage;
+import model.dto.AdminDTO;
+import model.dto.StaffDTO;
 
 import java.io.IOException;
 
 public class PlaceOrderFormController {
     Stage stage=new Stage();
+    AdminDTO adminDTO=null;
+    StaffDTO staffDTO=null;
 
     @FXML
     private TableView<?> tblCart;
@@ -85,14 +89,28 @@ public class PlaceOrderFormController {
 
     @FXML
     void clickedBtnDashbode(ActionEvent event) {
-        stage= (Stage) ((Node) event.getSource()).getScene().getWindow();
-        try {
-            FXMLLoader loader = new FXMLLoader(getClass().getResource("/view/adminDashbode.fxml"));
-            Parent root = loader.load();
-            stage.setScene(new Scene(root));
-        } catch (IOException e) {
-            throw new RuntimeException(e);
+        if(adminDTO!=null){
+            stage= (Stage) ((Node) event.getSource()).getScene().getWindow();
+            try {
+                FXMLLoader loader = new FXMLLoader(getClass().getResource("/view/adminDashbode.fxml"));
+                Parent root = loader.load();
+                stage.setScene(new Scene(root));
+            } catch (IOException e) {
+                throw new RuntimeException(e);
+            }
+        }else {
+            stage= (Stage) ((Node) event.getSource()).getScene().getWindow();
+            try {
+                FXMLLoader loader = new FXMLLoader(getClass().getResource("/view/staffDashbode.fxml"));
+                Parent root = loader.load();
+                stage.setScene(new Scene(root));
+            } catch (IOException e) {
+                throw new RuntimeException(e);
+            }
         }
+
+
+
         stage.setResizable(false);
         stage.show();
     }
@@ -110,6 +128,14 @@ public class PlaceOrderFormController {
     @FXML
     void searchcustomer(KeyEvent event) {
 
+    }
+
+    public void loadAdmin(AdminDTO admin){
+        adminDTO=admin;
+    }
+
+    public void loadStaff(StaffDTO staff){
+        staffDTO=staff;
     }
 
 }

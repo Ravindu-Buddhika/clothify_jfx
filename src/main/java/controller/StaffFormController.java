@@ -3,40 +3,66 @@ package controller;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
-import javafx.fxml.Initializable;
 import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
-import javafx.scene.control.Label;
+import javafx.scene.control.RadioButton;
+import javafx.scene.control.TableColumn;
+import javafx.scene.control.TableView;
+import javafx.scene.control.TextField;
+import javafx.scene.control.ToggleGroup;
+import javafx.scene.input.KeyEvent;
 import javafx.scene.input.MouseEvent;
 import javafx.stage.Stage;
-import model.dto.AdminDTO;
-import service.DashbodeService;
-import service.IMPL.DashbodeServiceIMPL;
 
 import java.io.IOException;
-import java.net.URL;
-import java.util.ResourceBundle;
 
-public class AdminDashbodeController implements Initializable {
-    AdminDTO admin=null;
-    DashbodeService dashbodeService=new DashbodeServiceIMPL();
-    Stage stage=new Stage();
+public class StaffFormController {
+    Stage stage= new Stage();
+    @FXML
+    private ToggleGroup checkType;
 
     @FXML
-    private Label countCustomers;
+    private RadioButton checkedAdmin;
 
     @FXML
-    private Label countItems;
+    private RadioButton checkedStaff;
 
     @FXML
-    private Label countSells;
+    private TableColumn<?, ?> colEmail;
 
     @FXML
-    private Label countStaff;
+    private TableColumn<?, ?> colID;
 
     @FXML
-    private Label countSuppliers;
+    private TableColumn<?, ?> colMobileNumber;
+
+    @FXML
+    private TableColumn<?, ?> colName;
+
+    @FXML
+    private TableColumn<?, ?> colUserID;
+
+    @FXML
+    private TableView<?> tblStaff;
+
+    @FXML
+    private TextField txtEmail;
+
+    @FXML
+    private TextField txtID;
+
+    @FXML
+    private TextField txtMobileNumber;
+
+    @FXML
+    private TextField txtName;
+
+    @FXML
+    private TextField txtStaff;
+
+    @FXML
+    private TextField txtUserName;
 
     @FXML
     void OrdersClicked(MouseEvent event) {
@@ -53,10 +79,30 @@ public class AdminDashbodeController implements Initializable {
     }
 
     @FXML
-    void customersClicked(MouseEvent event) {
+    void btnClickedAdd(ActionEvent event) {
+
+    }
+
+    @FXML
+    void btnClickedDelete(ActionEvent event) {
+
+    }
+
+    @FXML
+    void btnClickedGenarateICustomerCode(ActionEvent event) {
+
+    }
+
+    @FXML
+    void btnClickedUpdate(ActionEvent event) {
+
+    }
+
+    @FXML
+    void clickedSingOut(ActionEvent event) {
         stage= (Stage) ((Node) event.getSource()).getScene().getWindow();
         try {
-            FXMLLoader loader = new FXMLLoader(getClass().getResource("/view/customersForm.fxml"));
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/view/loginform.fxml"));
             Parent root = loader.load();
             stage.setScene(new Scene(root));
         } catch (IOException e) {
@@ -67,10 +113,10 @@ public class AdminDashbodeController implements Initializable {
     }
 
     @FXML
-    void clickedSingOut(ActionEvent event) {
+    void customersClicked(MouseEvent event) {
         stage= (Stage) ((Node) event.getSource()).getScene().getWindow();
         try {
-            FXMLLoader loader = new FXMLLoader(getClass().getResource("/view/loginform.fxml"));
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/view/customersForm.fxml"));
             Parent root = loader.load();
             stage.setScene(new Scene(root));
         } catch (IOException e) {
@@ -110,21 +156,21 @@ public class AdminDashbodeController implements Initializable {
 
     @FXML
     void orderClicked(MouseEvent event) {
-
         stage= (Stage) ((Node) event.getSource()).getScene().getWindow();
         try {
             FXMLLoader loader = new FXMLLoader(getClass().getResource("/view/PlaceOrderForm.fxml"));
             Parent root = loader.load();
-
-            PlaceOrderFormController placeOrderFormController=loader.getController();
-            placeOrderFormController.loadAdmin(admin);
-
             stage.setScene(new Scene(root));
         } catch (IOException e) {
             throw new RuntimeException(e);
         }
         stage.setResizable(false);
         stage.show();
+    }
+
+    @FXML
+    void sherchByUserID(KeyEvent event) {
+
     }
 
     @FXML
@@ -155,17 +201,5 @@ public class AdminDashbodeController implements Initializable {
         stage.show();
     }
 
-    public void loadUser(AdminDTO adminDTO){
-        admin=adminDTO;
-    }
-
-    @Override
-    public void initialize(URL url, ResourceBundle resourceBundle) {
-        countCustomers.setText(String.valueOf(dashbodeService.countOfCustomers()));
-        countItems.setText(String.valueOf(dashbodeService.countOfItems()));
-        countSells.setText(String.valueOf(dashbodeService.countOfSells()));
-        countStaff.setText(String.valueOf(dashbodeService.countOfStaff()));
-        countSuppliers.setText(String.valueOf(dashbodeService.countOfSuppliers()));
-    }
 }
 
