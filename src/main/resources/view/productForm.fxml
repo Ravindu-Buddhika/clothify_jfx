@@ -1,0 +1,210 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.RadioButton?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.control.ToggleGroup?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane prefHeight="754.0" prefWidth="1243.0" style="-fx-background-color: linear-gradient(to bottom, #000000 0%, #666666 100%);;" xmlns="http://javafx.com/javafx/25" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.ProductFormController">
+    <children>
+        <AnchorPane prefHeight="50.0" prefWidth="1249.0" style="-fx-background-color: #4C4B4B;">
+            <children>
+                <Button layoutX="1155.0" layoutY="13.0" mnemonicParsing="false" onAction="#clickedSingOut" style="-fx-background-color: C82E2E;" text="Sing Out" textFill="WHITE">
+                    <font>
+                        <Font name="Impact" size="13.0" />
+                    </font>
+                </Button>
+            </children></AnchorPane>
+        <AnchorPane layoutY="50.0" prefHeight="706.0" prefWidth="200.0" style="-fx-background-color: #D9D9D9;">
+            <children>
+                <Label layoutX="29.0" layoutY="47.0" onMouseClicked="#dashbodeClicked" text="Dashbode">
+                    <font>
+                        <Font name="Impact" size="26.0" />
+                    </font>
+                </Label>
+                <Label layoutX="31.0" layoutY="103.0" onMouseClicked="#orderClicked" text="Order">
+                    <font>
+                        <Font name="Impact" size="26.0" />
+                    </font>
+                </Label>
+                <Label layoutX="32.0" layoutY="218.0" onMouseClicked="#inventoryClicked" text="Inventoey">
+                    <font>
+                        <Font name="Impact" size="26.0" />
+                    </font>
+                </Label>
+                <Label layoutX="30.0" layoutY="159.0" onMouseClicked="#customersClicked" text="Customers">
+                    <font>
+                        <Font name="Impact" size="26.0" />
+                    </font>
+                </Label>
+                <Label layoutX="32.0" layoutY="277.0" onMouseClicked="#staffClicked" text="Staff">
+                    <font>
+                        <Font name="Impact" size="26.0" />
+                    </font>
+                </Label>
+                <Label layoutX="32.0" layoutY="342.0" onMouseClicked="#suppliesClicked" text="Suppliers">
+                    <font>
+                        <Font name="Impact" size="26.0" />
+                    </font>
+                </Label>
+                <Label layoutX="33.0" layoutY="410.0" onMouseClicked="#OrdersClicked" text="Orders">
+                    <font>
+                        <Font name="Impact" size="26.0" />
+                    </font>
+                </Label>
+            </children></AnchorPane>
+        <AnchorPane layoutX="229.0" layoutY="408.0" prefHeight="322.0" prefWidth="1006.0" style="-fx-background-color: rgba(255, 255, 255, 0.1); -fx-background-radius: 20; -fx-border-radius: 20; -fx-border-color: rgba(255, 255, 255, 0.2); -fx-border-width: 1;">
+         <children>
+            <Label layoutX="42.0" layoutY="40.0" onMouseClicked="#dashbodeClicked" text="Product Name" textFill="WHITE">
+               <font>
+                  <Font name="Impact" size="16.0" />
+               </font>
+            </Label>
+            <Label layoutX="41.0" layoutY="84.0" onMouseClicked="#dashbodeClicked" text="Product Code" textFill="WHITE">
+               <font>
+                  <Font name="Impact" size="16.0" />
+               </font>
+            </Label>
+            <Label layoutX="40.0" layoutY="132.0" onMouseClicked="#dashbodeClicked" text="Product Supplier" textFill="WHITE">
+               <font>
+                  <Font name="Impact" size="16.0" />
+               </font>
+            </Label>
+            <Label layoutX="42.0" layoutY="215.0" onMouseClicked="#dashbodeClicked" text="Quantity" textFill="WHITE">
+               <font>
+                  <Font name="Impact" size="16.0" />
+               </font>
+            </Label>
+            <Label layoutX="42.0" layoutY="177.0" onMouseClicked="#dashbodeClicked" text="Discount" textFill="WHITE">
+               <font>
+                  <Font name="Impact" size="16.0" />
+               </font>
+            </Label>
+            <Button layoutX="750.0" layoutY="249.0" mnemonicParsing="false" onAction="#btnClickedAdd" prefHeight="26.0" prefWidth="60.0" style="-fx-background-color: C82E2E;" text="Add" textFill="WHITE">
+               <font>
+                  <Font name="Impact" size="12.0" />
+               </font>
+            </Button>
+            <Button layoutX="818.0" layoutY="249.0" mnemonicParsing="false" onAction="#btnClickedUpdate" prefHeight="26.0" prefWidth="60.0" style="-fx-background-color: C82E2E;" text="Update" textFill="WHITE">
+               <font>
+                  <Font name="Impact" size="12.0" />
+               </font>
+            </Button>
+            <Button layoutX="886.0" layoutY="249.0" mnemonicParsing="false" onAction="#btnClickedDelete" prefHeight="26.0" prefWidth="60.0" style="-fx-background-color: C82E2E;" text="Delete" textFill="WHITE">
+               <font>
+                  <Font name="Impact" size="12.0" />
+               </font>
+            </Button>
+            <Label layoutX="44.0" layoutY="255.0" onMouseClicked="#dashbodeClicked" text="Price" textFill="WHITE">
+               <font>
+                  <Font name="Impact" size="16.0" />
+               </font>
+            </Label>
+            <TextField fx:id="txtProductName" layoutX="188.0" layoutY="38.0" style="-fx-background-radius: 10;" />
+            <TextField fx:id="txtProductCode" layoutX="188.0" layoutY="82.0" style="-fx-background-radius: 10;" />
+            <TextField fx:id="txtSupplier" layoutX="188.0" layoutY="129.0" style="-fx-background-radius: 10;" />
+            <TextField fx:id="txtDiscount" layoutX="188.0" layoutY="173.0" style="-fx-background-radius: 10;" />
+            <TextField fx:id="txtQuantity" layoutX="187.0" layoutY="215.0" style="-fx-background-radius: 10;" />
+            <TextField fx:id="txtPrice" layoutX="187.0" layoutY="255.0" style="-fx-background-radius: 10;" />
+            <Button layoutX="275.0" layoutY="81.0" mnemonicParsing="false" onAction="#btnClickedGenarateItemCode" prefHeight="26.0" prefWidth="62.0" style="-fx-background-color: C82E2E; -fx-background-radius: 10;" text="Genarate" textFill="WHITE">
+               <font>
+                  <Font name="Impact" size="12.0" />
+               </font>
+            </Button>
+            <RadioButton fx:id="rbTops" layoutX="488.0" layoutY="37.0" mnemonicParsing="false" text="Tops" textFill="WHITE">
+               <font>
+                  <Font name="Impact" size="12.0" />
+               </font>
+               <toggleGroup>
+                  <ToggleGroup fx:id="catagoryGroups" />
+               </toggleGroup>
+            </RadioButton>
+            <RadioButton fx:id="rbBottoms" layoutX="681.0" layoutY="37.0" mnemonicParsing="false" text="Bottoms" textFill="WHITE" toggleGroup="$catagoryGroups">
+               <font>
+                  <Font name="Impact" size="12.0" />
+               </font>
+            </RadioButton>
+            <RadioButton fx:id="rbFootware" layoutX="865.0" layoutY="37.0" mnemonicParsing="false" text="Footware" textFill="WHITE" toggleGroup="$catagoryGroups">
+               <font>
+                  <Font name="Impact" size="12.0" />
+               </font>
+            </RadioButton>
+            <RadioButton fx:id="rbAccsesories" layoutX="486.0" layoutY="86.0" mnemonicParsing="false" text="Accsesories" textFill="WHITE" toggleGroup="$catagoryGroups">
+               <font>
+                  <Font name="Impact" size="12.0" />
+               </font>
+            </RadioButton>
+            <RadioButton fx:id="rbMens" layoutX="486.0" layoutY="165.0" mnemonicParsing="false" text="Mens" textFill="WHITE">
+               <font>
+                  <Font name="Impact" size="12.0" />
+               </font>
+               <toggleGroup>
+                  <ToggleGroup fx:id="genderGroup" />
+               </toggleGroup>
+            </RadioButton>
+            <RadioButton fx:id="rbWomens" layoutX="680.0" layoutY="165.0" mnemonicParsing="false" text="Womens" textFill="WHITE" toggleGroup="$genderGroup">
+               <font>
+                  <Font name="Impact" size="12.0" />
+               </font>
+            </RadioButton>
+            <RadioButton fx:id="rbUnisex" layoutX="866.0" layoutY="165.0" mnemonicParsing="false" text="Unisex" textFill="WHITE" toggleGroup="$genderGroup">
+               <font>
+                  <Font name="Impact" size="12.0" />
+               </font>
+            </RadioButton>
+         </children></AnchorPane>
+      <TableView fx:id="tblProduct" layoutX="229.0" layoutY="94.0" prefHeight="298.0" prefWidth="1006.0">
+        <columns>
+          <TableColumn fx:id="colProductCode" prefWidth="86.4000244140625" text="Item Code" />
+          <TableColumn fx:id="colProductName" prefWidth="156.79995727539062" text="Item Name" />
+            <TableColumn fx:id="colCatagory" prefWidth="120.79995727539062" text="Catagory" />
+            <TableColumn fx:id="colGender" text="Gender" />
+            <TableColumn fx:id="colSupplier" prefWidth="188.79998779296875" text="Supplier" />
+            <TableColumn fx:id="colQuntityOnHand" prefWidth="110.40008544921875" text="Quantity on Hand" />
+            <TableColumn fx:id="colDiscount" prefWidth="150.39996337890625" text="Discounts" />
+            <TableColumn fx:id="colPrice" prefWidth="115.2000732421875" text="Price" />
+        </columns>
+      </TableView>
+      <TextField layoutX="1048.0" layoutY="66.0" onKeyReleased="#sherchByItemCode" prefHeight="26.0" prefWidth="187.0" promptText="Enter product Code" style="-fx-background-radius: 10;" />
+      <Label layoutX="469.0" layoutY="66.0" onMouseClicked="#TopsClicked" text="Tops" textFill="WHITE">
+         <font>
+            <Font name="Impact" size="13.0" />
+         </font>
+      </Label>
+      <Label layoutX="524.0" layoutY="66.0" onMouseClicked="#bottomsClicked" text="Bottoms" textFill="WHITE">
+         <font>
+            <Font name="Impact" size="13.0" />
+         </font>
+      </Label>
+      <Label layoutX="595.0" layoutY="66.0" onMouseClicked="#footwearClicked" text="Footwear" textFill="WHITE">
+         <font>
+            <Font name="Impact" size="13.0" />
+         </font>
+      </Label>
+      <Label layoutX="676.0" layoutY="66.0" onMouseClicked="#accsesoriesClicked" text="Accsesories" textFill="WHITE">
+         <font>
+            <Font name="Impact" size="13.0" />
+         </font>
+      </Label>
+      <Label layoutX="772.0" layoutY="66.0" onMouseClicked="#mensClicked" text="Mens" textFill="WHITE">
+         <font>
+            <Font name="Impact" size="13.0" />
+         </font>
+      </Label>
+      <Label layoutX="823.0" layoutY="66.0" onMouseClicked="#womensClicked" text="Womens" textFill="WHITE">
+         <font>
+            <Font name="Impact" size="13.0" />
+         </font>
+      </Label>
+      <Label layoutX="887.0" layoutY="66.0" onMouseClicked="#unisexClicked" text="Unisex" textFill="WHITE">
+         <font>
+            <Font name="Impact" size="13.0" />
+         </font>
+      </Label>
+    </children>
+</AnchorPane>
