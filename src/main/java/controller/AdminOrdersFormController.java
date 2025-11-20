@@ -72,7 +72,7 @@ public class AdminOrdersFormController {
     void OrdersClicked(MouseEvent event) {
         stage= (Stage) ((Node) event.getSource()).getScene().getWindow();
         try {
-            FXMLLoader loader = new FXMLLoader(getClass().getResource("/view/ordersForm.fxml"));
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/view/adminOrdersForm.fxml"));
             Parent root = loader.load();
             stage.setScene(new Scene(root));
         } catch (IOException e) {
@@ -100,7 +100,7 @@ public class AdminOrdersFormController {
     void customersClicked(MouseEvent event) {
         stage= (Stage) ((Node) event.getSource()).getScene().getWindow();
         try {
-            FXMLLoader loader = new FXMLLoader(getClass().getResource("/view/customersForm.fxml"));
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/view/adminCustomersForm.fxml"));
             Parent root = loader.load();
             stage.setScene(new Scene(root));
         } catch (IOException e) {
@@ -128,7 +128,7 @@ public class AdminOrdersFormController {
     void inventoryClicked(MouseEvent event) {
         stage= (Stage) ((Node) event.getSource()).getScene().getWindow();
         try {
-            FXMLLoader loader = new FXMLLoader(getClass().getResource("/view/productForm.fxml"));
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/view/adminProductForm.fxml"));
             Parent root = loader.load();
             stage.setScene(new Scene(root));
         } catch (IOException e) {
@@ -161,7 +161,7 @@ public class AdminOrdersFormController {
     void staffClicked(MouseEvent event) {
         stage= (Stage) ((Node) event.getSource()).getScene().getWindow();
         try {
-            FXMLLoader loader = new FXMLLoader(getClass().getResource("/view/staffForm.fxml"));
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/view/adminStaffForm.fxml"));
             Parent root = loader.load();
             stage.setScene(new Scene(root));
         } catch (IOException e) {
@@ -175,7 +175,7 @@ public class AdminOrdersFormController {
     void suppliesClicked(MouseEvent event) {
         stage= (Stage) ((Node) event.getSource()).getScene().getWindow();
         try {
-            FXMLLoader loader = new FXMLLoader(getClass().getResource("/view/suppliersForm.fxml"));
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/view/AdminSuppliersForm.fxml"));
             Parent root = loader.load();
             stage.setScene(new Scene(root));
         } catch (IOException e) {
