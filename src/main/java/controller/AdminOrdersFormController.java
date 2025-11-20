@@ -6,63 +6,67 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
-import javafx.scene.control.RadioButton;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
-import javafx.scene.control.TextField;
-import javafx.scene.control.ToggleGroup;
 import javafx.scene.input.KeyEvent;
 import javafx.scene.input.MouseEvent;
 import javafx.stage.Stage;
 
 import java.io.IOException;
 
-public class StaffFormController {
-    Stage stage= new Stage();
-    @FXML
-    private ToggleGroup checkType;
+public class AdminOrdersFormController {
+    Stage stage=new Stage();
 
     @FXML
-    private RadioButton checkedAdmin;
+    private TableColumn<?, ?> colCustomerCity;
 
     @FXML
-    private RadioButton checkedStaff;
+    private TableColumn<?, ?> colCustomerEmail;
 
     @FXML
-    private TableColumn<?, ?> colEmail;
+    private TableColumn<?, ?> colCustomerID;
 
     @FXML
-    private TableColumn<?, ?> colID;
+    private TableColumn<?, ?> colCustomerLoyalty;
 
     @FXML
-    private TableColumn<?, ?> colMobileNumber;
+    private TableColumn<?, ?> colCustomerMobile;
 
     @FXML
-    private TableColumn<?, ?> colName;
+    private TableColumn<?, ?> colCustomerName;
 
     @FXML
-    private TableColumn<?, ?> colUserID;
+    private TableColumn<?, ?> colDetailsDiscount;
 
     @FXML
-    private TableView<?> tblStaff;
+    private TableColumn<?, ?> colDetailsPrice;
 
     @FXML
-    private TextField txtEmail;
+    private TableColumn<?, ?> colDetailsProductCode;
 
     @FXML
-    private TextField txtID;
+    private TableColumn<?, ?> colOrderCustomer;
 
     @FXML
-    private TextField txtMobileNumber;
+    private TableColumn<?, ?> colOrderDate;
 
     @FXML
-    private TextField txtName;
+    private TableColumn<?, ?> colOrderId;
 
     @FXML
-    private TextField txtStaff;
+    private TableColumn<?, ?> colOrderTotal;
 
     @FXML
-    private TextField txtUserName;
+    private TableColumn<?, ?> coldDetailsQty;
+
+    @FXML
+    private TableView<?> tblCustomer;
+
+    @FXML
+    private TableView<?> tblOrder;
+
+    @FXML
+    private TableView<?> tblorderDetails;
 
     @FXML
     void OrdersClicked(MouseEvent event) {
@@ -76,26 +80,6 @@ public class StaffFormController {
         }
         stage.setResizable(false);
         stage.show();
-    }
-
-    @FXML
-    void btnClickedAdd(ActionEvent event) {
-
-    }
-
-    @FXML
-    void btnClickedDelete(ActionEvent event) {
-
-    }
-
-    @FXML
-    void btnClickedGenarateICustomerCode(ActionEvent event) {
-
-    }
-
-    @FXML
-    void btnClickedUpdate(ActionEvent event) {
-
     }
 
     @FXML
@@ -169,7 +153,7 @@ public class StaffFormController {
     }
 
     @FXML
-    void sherchByUserID(KeyEvent event) {
+    void sherchBYOrderID(KeyEvent event) {
 
     }
 
@@ -202,4 +186,3 @@ public class StaffFormController {
     }
 
 }
-

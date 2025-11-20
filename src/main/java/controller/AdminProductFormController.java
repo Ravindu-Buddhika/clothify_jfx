@@ -6,56 +6,87 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
-import javafx.scene.control.TableColumn;
-import javafx.scene.control.TableView;
-import javafx.scene.control.TextField;
+import javafx.scene.control.*;
 import javafx.scene.input.KeyEvent;
 import javafx.scene.input.MouseEvent;
 import javafx.stage.Stage;
 
 import java.io.IOException;
 
-public class CustomerFormController {
+public class AdminProductFormController {
     Stage stage=new Stage();
 
     @FXML
-    private TableColumn<?, ?> colCity;
+    private ToggleGroup catagoryGroups;
 
     @FXML
-    private TableColumn<?, ?> colCustomerCode;
+    private TableColumn<?, ?> colCatagory;
 
     @FXML
-    private TableColumn<?, ?> colCustomerName;
+    private TableColumn<?, ?> colDiscount;
 
     @FXML
-    private TableColumn<?, ?> colEmail;
+    private TableColumn<?, ?> colGender;
 
     @FXML
-    private TableColumn<?, ?> colLoyalty;
+    private TableColumn<?, ?> colPrice;
 
     @FXML
-    private TableColumn<?, ?> colMobileNumber;
+    private TableColumn<?, ?> colProductCode;
 
     @FXML
-    private TableView<?> tblCustomer;
+    private TableColumn<?, ?> colProductName;
 
     @FXML
-    private TextField txtCity;
+    private TableColumn<?, ?> colQuntityOnHand;
 
     @FXML
-    private TextField txtCustomerID;
+    private TableColumn<?, ?> colSupplier;
 
     @FXML
-    private TextField txtCustomerName;
+    private TableView<?> tblProduct;
 
     @FXML
-    private TextField txtEmail;
+    private ToggleGroup genderGroup;
 
     @FXML
-    private TextField txtLoyaltyPoints;
+    private RadioButton rbAccsesories;
 
     @FXML
-    private TextField txtMobileNumber;
+    private RadioButton rbBottoms;
+
+    @FXML
+    private RadioButton rbFootware;
+
+    @FXML
+    private RadioButton rbMens;
+
+    @FXML
+    private RadioButton rbTops;
+
+    @FXML
+    private RadioButton rbUnisex;
+
+    @FXML
+    private RadioButton rbWomens;
+
+    @FXML
+    private TextField txtDiscount;
+
+    @FXML
+    private TextField txtPrice;
+
+    @FXML
+    private TextField txtProductCode;
+
+    @FXML
+    private TextField txtProductName;
+
+    @FXML
+    private TextField txtQuantity;
+
+    @FXML
+    private TextField txtSupplier;
 
     @FXML
     void OrdersClicked(MouseEvent event) {
@@ -72,6 +103,21 @@ public class CustomerFormController {
     }
 
     @FXML
+    void TopsClicked(MouseEvent event) {
+
+    }
+
+    @FXML
+    void accsesoriesClicked(MouseEvent event) {
+
+    }
+
+    @FXML
+    void bottomsClicked(MouseEvent event) {
+
+    }
+
+    @FXML
     void btnClickedAdd(ActionEvent event) {
 
     }
@@ -82,7 +128,7 @@ public class CustomerFormController {
     }
 
     @FXML
-    void btnClickedGenarateICustomerCode(ActionEvent event) {
+    void btnClickedGenarateItemCode(ActionEvent event) {
 
     }
 
@@ -134,6 +180,11 @@ public class CustomerFormController {
     }
 
     @FXML
+    void footwearClicked(MouseEvent event) {
+
+    }
+
+    @FXML
     void inventoryClicked(MouseEvent event) {
         stage= (Stage) ((Node) event.getSource()).getScene().getWindow();
         try {
@@ -145,6 +196,11 @@ public class CustomerFormController {
         }
         stage.setResizable(false);
         stage.show();
+    }
+
+    @FXML
+    void mensClicked(MouseEvent event) {
+
     }
 
     @FXML
@@ -194,4 +250,15 @@ public class CustomerFormController {
         stage.show();
     }
 
+    @FXML
+    void unisexClicked(MouseEvent event) {
+
+    }
+
+    @FXML
+    void womensClicked(MouseEvent event) {
+
+    }
+
 }
+
