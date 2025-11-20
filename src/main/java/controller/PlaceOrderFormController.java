@@ -14,7 +14,7 @@ import javafx.stage.Stage;
 
 import java.io.IOException;
 
-public class OrderFormController {
+public class PlaceOrderFormController {
     Stage stage=new Stage();
 
     @FXML
