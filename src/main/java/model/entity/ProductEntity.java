@@ -15,5 +15,7 @@ public class ProductEntity {
     private double price;
     private int dis;
     private String category;
+    private String gender;
     private int qtyOnHand;
+    private String supplierID;
 }
