@@ -12,11 +12,13 @@ import javafx.scene.control.TextField;
 import javafx.scene.input.KeyEvent;
 import javafx.scene.input.MouseEvent;
 import javafx.stage.Stage;
+import model.dto.AdminDTO;
 
 import java.io.IOException;
 
 public class SuppliersFormController {
     Stage stage=new Stage();
+    AdminDTO adminDTO=null;
 
     @FXML
     private TableColumn<?, ?> colCity;
@@ -57,6 +59,10 @@ public class SuppliersFormController {
         try {
             FXMLLoader loader = new FXMLLoader(getClass().getResource("/view/adminOrdersForm.fxml"));
             Parent root = loader.load();
+
+            OrdersFormController ordersFormController=loader.getController();
+            ordersFormController.loadAdmin(adminDTO);
+
             stage.setScene(new Scene(root));
         } catch (IOException e) {
             throw new RuntimeException(e);
@@ -105,6 +111,10 @@ public class SuppliersFormController {
         try {
             FXMLLoader loader = new FXMLLoader(getClass().getResource("/view/adminCustomersForm.fxml"));
             Parent root = loader.load();
+
+            CustomerFormController customerFormController=loader.getController();
+            customerFormController.loadAdmin(adminDTO);
+
             stage.setScene(new Scene(root));
         } catch (IOException e) {
             throw new RuntimeException(e);
@@ -119,6 +129,10 @@ public class SuppliersFormController {
         try {
             FXMLLoader loader = new FXMLLoader(getClass().getResource("/view/adminDashbode.fxml"));
             Parent root = loader.load();
+
+            AdminDashbodeController adminDashbodeController=loader.getController();
+            adminDashbodeController.loadUser(adminDTO);
+
             stage.setScene(new Scene(root));
         } catch (IOException e) {
             throw new RuntimeException(e);
@@ -133,6 +147,10 @@ public class SuppliersFormController {
         try {
             FXMLLoader loader = new FXMLLoader(getClass().getResource("/view/adminProductForm.fxml"));
             Parent root = loader.load();
+
+            ProductFormController productFormController=loader.getController();
+            productFormController.loadAdmin(adminDTO);
+
             stage.setScene(new Scene(root));
         } catch (IOException e) {
             throw new RuntimeException(e);
@@ -147,6 +165,10 @@ public class SuppliersFormController {
         try {
             FXMLLoader loader = new FXMLLoader(getClass().getResource("/view/PlaceOrderForm.fxml"));
             Parent root = loader.load();
+
+            PlaceOrderFormController placeOrderFormController=loader.getController();
+            placeOrderFormController.loadAdmin(adminDTO);
+
             stage.setScene(new Scene(root));
         } catch (IOException e) {
             throw new RuntimeException(e);
@@ -166,6 +188,10 @@ public class SuppliersFormController {
         try {
             FXMLLoader loader = new FXMLLoader(getClass().getResource("/view/adminStaffForm.fxml"));
             Parent root = loader.load();
+
+            StaffFormController staffFormController=loader.getController();
+            staffFormController.loadAdmin(adminDTO);
+
             stage.setScene(new Scene(root));
         } catch (IOException e) {
             throw new RuntimeException(e);
@@ -180,12 +206,20 @@ public class SuppliersFormController {
         try {
             FXMLLoader loader = new FXMLLoader(getClass().getResource("/view/AdminSuppliersForm.fxml"));
             Parent root = loader.load();
+
+            SuppliersFormController suppliersFormController=loader.getController();
+            suppliersFormController.loadAdmin(adminDTO);
+
             stage.setScene(new Scene(root));
         } catch (IOException e) {
             throw new RuntimeException(e);
         }
         stage.setResizable(false);
         stage.show();
+    }
+
+    public void loadAdmin(AdminDTO admin){
+        adminDTO=admin;
     }
 
 }

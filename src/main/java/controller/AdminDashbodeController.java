@@ -11,6 +11,7 @@ import javafx.scene.control.Label;
 import javafx.scene.input.MouseEvent;
 import javafx.stage.Stage;
 import model.dto.AdminDTO;
+import model.dto.StaffDTO;
 import service.DashbodeService;
 import service.IMPL.DashbodeServiceIMPL;
 
@@ -19,7 +20,8 @@ import java.net.URL;
 import java.util.ResourceBundle;
 
 public class AdminDashbodeController implements Initializable {
-    AdminDTO admin=null;
+    AdminDTO adminDTO=null;
+    StaffDTO staffDTO=null;
     DashbodeService dashbodeService=new DashbodeServiceIMPL();
     Stage stage=new Stage();
 
@@ -44,6 +46,10 @@ public class AdminDashbodeController implements Initializable {
         try {
             FXMLLoader loader = new FXMLLoader(getClass().getResource("/view/adminOrdersForm.fxml"));
             Parent root = loader.load();
+
+            OrdersFormController ordersFormController=loader.getController();
+            ordersFormController.loadAdmin(adminDTO);
+
             stage.setScene(new Scene(root));
         } catch (IOException e) {
             throw new RuntimeException(e);
@@ -58,6 +64,10 @@ public class AdminDashbodeController implements Initializable {
         try {
             FXMLLoader loader = new FXMLLoader(getClass().getResource("/view/adminCustomersForm.fxml"));
             Parent root = loader.load();
+
+            CustomerFormController customerFormController=loader.getController();
+            customerFormController.loadAdmin(adminDTO);
+
             stage.setScene(new Scene(root));
         } catch (IOException e) {
             throw new RuntimeException(e);
@@ -86,6 +96,10 @@ public class AdminDashbodeController implements Initializable {
         try {
             FXMLLoader loader = new FXMLLoader(getClass().getResource("/view/adminDashbode.fxml"));
             Parent root = loader.load();
+
+            AdminDashbodeController adminDashbodeController=loader.getController();
+            adminDashbodeController.loadUser(adminDTO);
+
             stage.setScene(new Scene(root));
         } catch (IOException e) {
             throw new RuntimeException(e);
@@ -100,6 +114,10 @@ public class AdminDashbodeController implements Initializable {
         try {
             FXMLLoader loader = new FXMLLoader(getClass().getResource("/view/adminProductForm.fxml"));
             Parent root = loader.load();
+
+            ProductFormController productFormController=loader.getController();
+            productFormController.loadAdmin(adminDTO);
+
             stage.setScene(new Scene(root));
         } catch (IOException e) {
             throw new RuntimeException(e);
@@ -117,7 +135,7 @@ public class AdminDashbodeController implements Initializable {
             Parent root = loader.load();
 
             PlaceOrderFormController placeOrderFormController=loader.getController();
-            placeOrderFormController.loadAdmin(admin);
+            placeOrderFormController.loadAdmin(adminDTO);
 
             stage.setScene(new Scene(root));
         } catch (IOException e) {
@@ -133,6 +151,10 @@ public class AdminDashbodeController implements Initializable {
         try {
             FXMLLoader loader = new FXMLLoader(getClass().getResource("/view/adminStaffForm.fxml"));
             Parent root = loader.load();
+
+            PlaceOrderFormController placeOrderFormController=loader.getController();
+            placeOrderFormController.loadAdmin(adminDTO);
+
             stage.setScene(new Scene(root));
         } catch (IOException e) {
             throw new RuntimeException(e);
@@ -147,6 +169,10 @@ public class AdminDashbodeController implements Initializable {
         try {
             FXMLLoader loader = new FXMLLoader(getClass().getResource("/view/AdminSuppliersForm.fxml"));
             Parent root = loader.load();
+
+            SuppliersFormController suppliersFormController=loader.getController();
+            suppliersFormController.loadAdmin(adminDTO);
+
             stage.setScene(new Scene(root));
         } catch (IOException e) {
             throw new RuntimeException(e);
@@ -155,8 +181,8 @@ public class AdminDashbodeController implements Initializable {
         stage.show();
     }
 
-    public void loadUser(AdminDTO adminDTO){
-        admin=adminDTO;
+    public void loadUser(AdminDTO admin){
+        adminDTO=admin;
     }
 
     @Override
