@@ -6,63 +6,50 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
-import javafx.scene.control.RadioButton;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
-import javafx.scene.control.ToggleGroup;
 import javafx.scene.input.KeyEvent;
 import javafx.scene.input.MouseEvent;
 import javafx.stage.Stage;
 
 import java.io.IOException;
 
-public class AdminStaffFormController {
-    Stage stage= new Stage();
-    @FXML
-    private ToggleGroup checkType;
+public class SuppliersFormController {
+    Stage stage=new Stage();
 
     @FXML
-    private RadioButton checkedAdmin;
+    private TableColumn<?, ?> colCity;
 
     @FXML
-    private RadioButton checkedStaff;
+    private TableColumn<?, ?> colCustomerCode;
+
+    @FXML
+    private TableColumn<?, ?> colCustomerName;
 
     @FXML
     private TableColumn<?, ?> colEmail;
 
     @FXML
-    private TableColumn<?, ?> colID;
-
-    @FXML
     private TableColumn<?, ?> colMobileNumber;
 
     @FXML
-    private TableColumn<?, ?> colName;
+    private TableView<?> tblCustomer;
 
     @FXML
-    private TableColumn<?, ?> colUserID;
+    private TextField txtCity;
 
     @FXML
-    private TableView<?> tblStaff;
+    private TextField txtCustomerID;
+
+    @FXML
+    private TextField txtCustomerName;
 
     @FXML
     private TextField txtEmail;
 
     @FXML
-    private TextField txtID;
-
-    @FXML
     private TextField txtMobileNumber;
-
-    @FXML
-    private TextField txtName;
-
-    @FXML
-    private TextField txtStaff;
-
-    @FXML
-    private TextField txtUserName;
 
     @FXML
     void OrdersClicked(MouseEvent event) {
@@ -169,7 +156,7 @@ public class AdminStaffFormController {
     }
 
     @FXML
-    void sherchByUserID(KeyEvent event) {
+    void sherchByItemCode(KeyEvent event) {
 
     }
 
@@ -202,4 +189,3 @@ public class AdminStaffFormController {
     }
 
 }
-

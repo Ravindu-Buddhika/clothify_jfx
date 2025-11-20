@@ -6,56 +6,63 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.control.RadioButton;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
+import javafx.scene.control.ToggleGroup;
 import javafx.scene.input.KeyEvent;
 import javafx.scene.input.MouseEvent;
 import javafx.stage.Stage;
 
 import java.io.IOException;
 
-public class AdminCustomerFormController {
-    Stage stage=new Stage();
+public class StaffFormController {
+    Stage stage= new Stage();
+    @FXML
+    private ToggleGroup checkType;
 
     @FXML
-    private TableColumn<?, ?> colCity;
+    private RadioButton checkedAdmin;
 
     @FXML
-    private TableColumn<?, ?> colCustomerCode;
-
-    @FXML
-    private TableColumn<?, ?> colCustomerName;
+    private RadioButton checkedStaff;
 
     @FXML
     private TableColumn<?, ?> colEmail;
 
     @FXML
-    private TableColumn<?, ?> colLoyalty;
+    private TableColumn<?, ?> colID;
 
     @FXML
     private TableColumn<?, ?> colMobileNumber;
 
     @FXML
-    private TableView<?> tblCustomer;
+    private TableColumn<?, ?> colName;
 
     @FXML
-    private TextField txtCity;
+    private TableColumn<?, ?> colUserID;
 
     @FXML
-    private TextField txtCustomerID;
-
-    @FXML
-    private TextField txtCustomerName;
+    private TableView<?> tblStaff;
 
     @FXML
     private TextField txtEmail;
 
     @FXML
-    private TextField txtLoyaltyPoints;
+    private TextField txtID;
 
     @FXML
     private TextField txtMobileNumber;
+
+    @FXML
+    private TextField txtName;
+
+    @FXML
+    private TextField txtStaff;
+
+    @FXML
+    private TextField txtUserName;
 
     @FXML
     void OrdersClicked(MouseEvent event) {
@@ -162,7 +169,7 @@ public class AdminCustomerFormController {
     }
 
     @FXML
-    void sherchByItemCode(KeyEvent event) {
+    void sherchByUserID(KeyEvent event) {
 
     }
 
@@ -195,3 +202,4 @@ public class AdminCustomerFormController {
     }
 
 }
+
