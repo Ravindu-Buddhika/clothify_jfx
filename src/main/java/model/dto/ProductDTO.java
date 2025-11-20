@@ -15,5 +15,5 @@ public class ProductDTO {
     private String category;
     private String gender;
     private int qtyOnHand;
-    private String supplierName;
+    private String supplierID;
 }
