@@ -1,19 +1,27 @@
 package controller;
 
+import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
+import javafx.scene.Node;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
 import javafx.scene.control.Label;
 import javafx.scene.input.MouseEvent;
+import javafx.stage.Stage;
 import model.dto.AdminDTO;
 import service.DashbodeService;
 import service.IMPL.DashbodeServiceIMPL;
 
+import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
 
 public class AdminDashbodeController implements Initializable {
     AdminDTO admin=null;
     DashbodeService dashbodeService=new DashbodeServiceIMPL();
+    Stage stage=new Stage();
 
     @FXML
     private Label countCustomers;
@@ -39,10 +47,32 @@ public class AdminDashbodeController implements Initializable {
     void customersClicked(MouseEvent event) {
 
     }
+    @FXML
+    void clickedSingOut(ActionEvent event) {
+        stage= (Stage) ((Node) event.getSource()).getScene().getWindow();
+        try {
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/view/loginform.fxml"));
+            Parent root = loader.load();
+            stage.setScene(new Scene(root));
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }
+        stage.setResizable(false);
+        stage.show();
+    }
 
     @FXML
     void dashbodeClicked(MouseEvent event) {
-
+        stage= (Stage) ((Node) event.getSource()).getScene().getWindow();
+        try {
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/view/adminDashbode.fxml"));
+            Parent root = loader.load();
+            stage.setScene(new Scene(root));
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }
+        stage.setResizable(false);
+        stage.show();
     }
 
     @FXML
@@ -52,7 +82,16 @@ public class AdminDashbodeController implements Initializable {
 
     @FXML
     void orderClicked(MouseEvent event) {
-
+        stage= (Stage) ((Node) event.getSource()).getScene().getWindow();
+        try {
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/view/orderFormController.fxml"));
+            Parent root = loader.load();
+            stage.setScene(new Scene(root));
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }
+        stage.setResizable(false);
+        stage.show();
     }
 
     @FXML
