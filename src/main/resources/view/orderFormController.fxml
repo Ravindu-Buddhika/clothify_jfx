@@ -25,31 +25,31 @@
                   <Font name="Impact" size="16.0" />
                </font>
             </Label>
-            <TextField layoutX="203.0" layoutY="49.0" style="-fx-background-radius: 10; -fx-border-radius: 10;" />
+            <TextField fx:id="txtContactNumber" layoutX="203.0" layoutY="49.0" onKeyReleased="#searchCustomer" style="-fx-background-radius: 10; -fx-border-radius: 10;" />
             <Label layoutX="436.0" layoutY="51.0" text="Customer Name" textFill="WHITE">
                <font>
                   <Font name="Impact" size="16.0" />
                </font>
             </Label>
-            <TextField layoutX="566.0" layoutY="49.0" style="-fx-background-radius: 10; -fx-border-radius: 10;" />
+            <TextField fx:id="txtCustomerName" layoutX="566.0" layoutY="49.0" style="-fx-background-radius: 10; -fx-border-radius: 10;" />
             <Label layoutX="808.0" layoutY="51.0" text="Email" textFill="WHITE">
                <font>
                   <Font name="Impact" size="16.0" />
                </font>
             </Label>
-            <TextField layoutX="942.0" layoutY="49.0" style="-fx-background-radius: 10; -fx-border-radius: 10;" />
+            <TextField fx:id="txtEmail" layoutX="942.0" layoutY="49.0" style="-fx-background-radius: 10; -fx-border-radius: 10;" />
             <Label layoutX="72.0" layoutY="103.0" text="City" textFill="WHITE">
                <font>
                   <Font name="Impact" size="16.0" />
                </font>
             </Label>
-            <TextField layoutX="203.0" layoutY="101.0" style="-fx-background-radius: 10; -fx-border-radius: 10;" />
+            <TextField fx:id="txtCity" layoutX="203.0" layoutY="101.0" style="-fx-background-radius: 10; -fx-border-radius: 10;" />
             <Label layoutX="436.0" layoutY="103.0" text="Loyalty Points" textFill="WHITE">
                <font>
                   <Font name="Impact" size="16.0" />
                </font>
             </Label>
-            <TextField layoutX="566.0" layoutY="101.0" style="-fx-background-radius: 10; -fx-border-radius: 10;" />
+            <TextField fx:id="txtLoyaltyPoints" layoutX="566.0" layoutY="101.0" style="-fx-background-radius: 10; -fx-border-radius: 10;" />
             <AnchorPane layoutX="72.0" layoutY="147.0" prefHeight="462.0" prefWidth="390.0" style="-fx-background-color: white;">
                <children>
                   <Button layoutY="412.0" mnemonicParsing="false" onAction="#clickedBtnCheckout" prefHeight="50.0" prefWidth="390.0" style="-fx-background-color: C82E2E;" text="Check Out" textFill="WHITE">
@@ -62,7 +62,7 @@
                         <Font name="Impact" size="36.0" />
                      </font>
                   </Label>
-                  <TableView layoutX="14.0" layoutY="71.0" prefHeight="280.0" prefWidth="362.0" style="-fx-border-color: white;">
+                  <TableView fx:id="tblCart" layoutX="14.0" layoutY="71.0" prefHeight="280.0" prefWidth="362.0" style="-fx-border-color: white;">
                     <columns>
                       <TableColumn prefWidth="91.20001220703125" text="Item Name" />
                       <TableColumn prefWidth="100.79998779296875" text="QTY" />
@@ -70,7 +70,8 @@
                         <TableColumn prefWidth="85.60001220703123" text="Price" />
                     </columns>
                   </TableView>
-                  <TextField layoutX="293.0" layoutY="351.0" prefHeight="26.0" prefWidth="82.0" style="-fx-border-color: white;" />
+                  <TextField fx:id="txtNetTotal" layoutX="293.0" layoutY="351.0" prefHeight="26.0" prefWidth="82.0" style="-fx-border-color: white;" />
+                  <TextField fx:id="txtLoyaltyDis" layoutX="210.0" layoutY="351.0" prefHeight="27.0" prefWidth="82.0" style="-fx-border-color: white;" />
                </children>
             </AnchorPane>
             <AnchorPane layoutX="462.0" layoutY="410.0" prefHeight="200.0" prefWidth="635.0" style="-fx-background-color: white;">
@@ -80,20 +81,20 @@
                         <Font name="Impact" size="16.0" />
                      </font>
                   </Label>
-                  <TextField layoutX="122.0" layoutY="34.0" style="-fx-background-radius: 10; -fx-border-radius: 10;" />
+                  <TextField fx:id="txtProductID" layoutX="122.0" layoutY="34.0" style="-fx-background-radius: 10; -fx-border-radius: 10;" />
                   <Label layoutX="36.0" layoutY="36.0" text="Product ID" textFill="#636363">
                      <font>
                         <Font name="Impact" size="16.0" />
                      </font>
                   </Label>
-                  <TextField layoutX="431.0" layoutY="34.0" style="-fx-background-radius: 10; -fx-border-radius: 10;" />
+                  <TextField fx:id="txtProductName" layoutX="431.0" layoutY="34.0" style="-fx-background-radius: 10; -fx-border-radius: 10;" />
                   <Label layoutX="36.0" layoutY="78.0" text="Price" textFill="#636363">
                      <font>
                         <Font name="Impact" size="16.0" />
                      </font>
                   </Label>
-                  <TextField layoutX="122.0" layoutY="76.0" style="-fx-background-radius: 10; -fx-border-radius: 10;" />
-                  <Spinner layoutX="432.0" layoutY="76.0" style="-fx-background-radius: 10; -fx-border-radius: 10;" />
+                  <TextField fx:id="txtPrice" layoutX="122.0" layoutY="76.0" style="-fx-background-radius: 10; -fx-border-radius: 10;" />
+                  <Spinner fx:id="txtQuantity" layoutX="432.0" layoutY="76.0" style="-fx-background-radius: 10; -fx-border-radius: 10;" />
                   <Label layoutX="328.0" layoutY="78.0" text="Quantity" textFill="#636363">
                      <font>
                         <Font name="Impact" size="16.0" />
@@ -104,7 +105,7 @@
                         <Font name="Impact" size="16.0" />
                      </font>
                   </Label>
-                  <TextField layoutX="122.0" layoutY="116.0" style="-fx-background-radius: 10; -fx-border-radius: 10;" />
+                  <TextField fx:id="txtDiscount" layoutX="122.0" layoutY="116.0" style="-fx-background-radius: 10; -fx-border-radius: 10;" />
                   <Button layoutX="446.0" layoutY="115.0" mnemonicParsing="false" onAction="#clickedBtnClear" prefHeight="27.0" prefWidth="59.0" style="-fx-background-color: C82E2E;" text="Clear" textFill="WHITE">
                      <font>
                         <Font name="Impact" size="14.0" />
@@ -122,7 +123,7 @@
                   </Button>
                </children>
             </AnchorPane>
-            <TableView layoutX="462.0" layoutY="172.0" prefHeight="246.0" prefWidth="635.0" style="-fx-border-color: white;">
+            <TableView fx:id="tblProducts" layoutX="462.0" layoutY="172.0" prefHeight="246.0" prefWidth="635.0" style="-fx-border-color: white;">
               <columns>
                 <TableColumn prefWidth="77.5999755859375" text="Item Code" />
                 <TableColumn prefWidth="160.800048828125" text="Item Name" />
@@ -132,13 +133,14 @@
                   <TableColumn prefWidth="95.99992675781255" text="Price" />
               </columns>
             </TableView>
-            <TextField layoutX="462.0" layoutY="147.0" prefHeight="26.0" prefWidth="635.0" />
-            <Label layoutX="808.0" layoutY="103.0" prefHeight="22.0" prefWidth="82.0" text="Order ID" textFill="WHITE">
+            <TextField fx:id="txtSearchbar" layoutX="462.0" layoutY="147.0" onKeyReleased="#searchcustomer" prefHeight="26.0" prefWidth="523.0" promptText="EnterI Item Code" />
+            <Label layoutX="808.0" layoutY="103.0" prefHeight="22.0" prefWidth="82.0" text="Customer ID" textFill="WHITE">
                <font>
                   <Font name="Impact" size="16.0" />
                </font>
             </Label>
-            <TextField layoutX="942.0" layoutY="101.0" style="-fx-background-radius: 10; -fx-border-radius: 10;" />
+            <TextField fx:id="txtCustomerID" layoutX="942.0" layoutY="101.0" style="-fx-background-radius: 10; -fx-border-radius: 10;" />
+            <TextField fx:id="txtSearchbar1" layoutX="985.0" layoutY="147.0" onKeyReleased="#searchcustomer" prefHeight="26.0" prefWidth="112.0" />
          </children></AnchorPane>
     </children>
 </AnchorPane>
