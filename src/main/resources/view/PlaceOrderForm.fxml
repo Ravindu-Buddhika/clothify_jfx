@@ -64,10 +64,10 @@
                   </Label>
                   <TableView fx:id="tblCart" layoutX="14.0" layoutY="71.0" prefHeight="280.0" prefWidth="362.0" style="-fx-border-color: white;">
                     <columns>
-                      <TableColumn prefWidth="91.20001220703125" text="Item Name" />
-                      <TableColumn prefWidth="100.79998779296875" text="QTY" />
-                        <TableColumn prefWidth="83.20001220703125" text="Discount" />
-                        <TableColumn prefWidth="85.60001220703123" text="Price" />
+                      <TableColumn fx:id="colCartName" prefWidth="91.20001220703125" text="Item Name" />
+                      <TableColumn fx:id="colCartQty" prefWidth="100.79998779296875" text="QTY" />
+                        <TableColumn fx:id="colCartDiscount" prefWidth="83.20001220703125" text="Discount" />
+                        <TableColumn fx:id="colCartPrice" prefWidth="85.60001220703123" text="Price" />
                     </columns>
                   </TableView>
                   <TextField fx:id="txtNetTotal" layoutX="293.0" layoutY="351.0" prefHeight="26.0" prefWidth="82.0" style="-fx-border-color: white;" />
@@ -125,12 +125,12 @@
             </AnchorPane>
             <TableView fx:id="tblProducts" layoutX="462.0" layoutY="172.0" prefHeight="246.0" prefWidth="635.0" style="-fx-border-color: white;">
               <columns>
-                <TableColumn prefWidth="77.5999755859375" text="Item Code" />
-                <TableColumn prefWidth="160.800048828125" text="Item Name" />
-                  <TableColumn prefWidth="104.00006103515625" text="Catogory" />
-                  <TableColumn prefWidth="79.199951171875" text="Qty on Hand" />
-                  <TableColumn prefWidth="117.5999755859375" text="Discount" />
-                  <TableColumn prefWidth="95.99992675781255" text="Price" />
+                <TableColumn fx:id="colItemCode" prefWidth="77.5999755859375" text="Item Code" />
+                <TableColumn fx:id="colItemName" prefWidth="160.800048828125" text="Item Name" />
+                  <TableColumn fx:id="colItemCatagory" prefWidth="104.00006103515625" text="Catogory" />
+                  <TableColumn fx:id="colqQtyOnHand" prefWidth="79.199951171875" text="Qty on Hand" />
+                  <TableColumn fx:id="colItemDiscount" prefWidth="117.5999755859375" text="Discount" />
+                  <TableColumn fx:id="colItemPrice" prefWidth="95.99992675781255" text="Price" />
               </columns>
             </TableView>
             <TextField fx:id="txtSearchbar" layoutX="462.0" layoutY="147.0" onKeyReleased="#searchItem" prefHeight="26.0" prefWidth="523.0" promptText="EnterI Item Code" />
@@ -140,7 +140,7 @@
                </font>
             </Label>
             <TextField fx:id="txtCustomerID" layoutX="942.0" layoutY="101.0" style="-fx-background-radius: 10; -fx-border-radius: 10;" />
-            <TextField fx:id="txtSearchbar1" layoutX="985.0" layoutY="147.0" onKeyReleased="#searchcustomer" prefHeight="26.0" prefWidth="112.0" />
+            <TextField fx:id="txtSearchbar1" layoutX="985.0" layoutY="147.0" onKeyReleased="#searchItem" prefHeight="26.0" prefWidth="112.0" />
          </children></AnchorPane>
     </children>
 </AnchorPane>
