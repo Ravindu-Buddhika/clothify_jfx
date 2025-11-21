@@ -1,26 +1,37 @@
 package controller;
 
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
+import javafx.fxml.Initializable;
 import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
+import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.input.KeyEvent;
 import javafx.scene.input.MouseEvent;
 import javafx.stage.Stage;
 import model.dto.AdminDTO;
+import model.dto.CustomerDTO;
 import model.dto.StaffDTO;
+import service.CustomerService;
+import service.IMPL.CustomerServiceIMPL;
 
 import java.io.IOException;
+import java.net.URL;
+import java.util.ResourceBundle;
 
-public class CustomerFormController {
+public class CustomerFormController implements Initializable {
     Stage stage=new Stage();
     AdminDTO adminDTO=null;
     StaffDTO staffDTO=null;
+    ObservableList<CustomerDTO> customers = FXCollections.observableArrayList();
+    CustomerService service=new CustomerServiceIMPL();
 
     @FXML
     private TableColumn<?, ?> colCity;
@@ -41,7 +52,7 @@ public class CustomerFormController {
     private TableColumn<?, ?> colMobileNumber;
 
     @FXML
-    private TableView<?> tblCustomer;
+    private TableView<CustomerDTO> tblCustomer;
 
     @FXML
     private TextField txtCity;
@@ -96,22 +107,52 @@ public class CustomerFormController {
 
     @FXML
     void btnClickedAdd(ActionEvent event) {
+        service.addCustomer(new CustomerDTO(
+                txtCustomerID.getText(),
+                txtCustomerName.getText(),
+                txtMobileNumber.getText(),
+                txtEmail.getText(),
+                txtCity.getText(),
+                Integer.parseInt(txtLoyaltyPoints.getText())
+        ));
+        loadCustomers();
+        clearFields();
 
     }
 
     @FXML
     void btnClickedDelete(ActionEvent event) {
-
+        service.deleteCustomer(txtCustomerID.getText());
+        loadCustomers();
+        clearFields();
     }
 
     @FXML
     void btnClickedGenarateICustomerCode(ActionEvent event) {
-
+        txtCustomerID.setText(service.getID());
     }
 
     @FXML
     void btnClickedUpdate(ActionEvent event) {
+        service.updateCustomer(new CustomerDTO(
+                txtCustomerID.getText(),
+                txtCustomerName.getText(),
+                txtMobileNumber.getText(),
+                txtEmail.getText(),
+                txtCity.getText(),
+                Integer.parseInt(txtLoyaltyPoints.getText())
+        ));
+        loadCustomers();
+        clearFields();
+    }
 
+    private void clearFields() {
+        txtLoyaltyPoints.clear();
+        txtMobileNumber.clear();
+        txtCustomerID.clear();
+        txtCity.clear();
+        txtEmail.clear();
+        txtCustomerName.clear();
     }
 
     @FXML
@@ -292,4 +333,33 @@ public class CustomerFormController {
         staffDTO=staff;
     }
 
+    @Override
+    public void initialize(URL url, ResourceBundle resourceBundle) {
+        colCustomerCode.setCellValueFactory(new PropertyValueFactory<>("id"));
+        colCustomerName.setCellValueFactory(new PropertyValueFactory<>("name"));
+        colMobileNumber.setCellValueFactory(new PropertyValueFactory<>("mobileNumber"));
+        colEmail.setCellValueFactory(new PropertyValueFactory<>("email"));
+        colCity.setCellValueFactory(new PropertyValueFactory<>("city"));
+        colLoyalty.setCellValueFactory(new PropertyValueFactory<>("loyalty"));
+
+        loadCustomers();
+
+        tblCustomer.getSelectionModel().selectedItemProperty().addListener((obs, oldVal, newVal) -> {
+            if (newVal != null) {
+                txtCustomerID.setText(newVal.getId());
+                txtCustomerName.setText(newVal.getName());
+                txtMobileNumber.setText(newVal.getMobileNumber());
+                txtEmail.setText(newVal.getEmail());
+                txtCity.setText(newVal.getCity());
+                txtLoyaltyPoints.setText(String.valueOf(newVal.getLoyalty()));
+            }
+        });
+
+    }
+
+    private void loadCustomers() {
+        customers.clear();
+        customers=service.getAllProducts();
+        tblCustomer.setItems(customers);
+    }
 }
