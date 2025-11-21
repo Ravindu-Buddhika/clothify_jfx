@@ -9,24 +9,18 @@ import javafx.fxml.Initializable;
 import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
-import javafx.scene.control.Spinner;
-import javafx.scene.control.TableColumn;
-import javafx.scene.control.TableView;
-import javafx.scene.control.TextField;
+import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.input.KeyEvent;
 import javafx.stage.Stage;
-import model.dto.AdminDTO;
-import model.dto.CustomerDTO;
-import model.dto.ProductDTO;
-import model.dto.StaffDTO;
-import service.CustomerService;
-import service.IMPL.CustomerServiceIMPL;
-import service.IMPL.ProductServiceIMPL;
-import service.ProductService;
+import model.dto.*;
+import service.*;
+import service.IMPL.*;
 
 import java.io.IOException;
 import java.net.URL;
+import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
 import java.util.ResourceBundle;
 
 public class PlaceOrderFormController implements Initializable {
@@ -35,7 +29,11 @@ public class PlaceOrderFormController implements Initializable {
     StaffDTO staffDTO=null;
     CustomerService customerService=new CustomerServiceIMPL();
     ProductService productService=new ProductServiceIMPL();
+    OrderDetailsService orderDetailsService=new OrderDetailsServiceIMPL();
+    OrderService orderService=new OrdersServiceIMPL();
     ObservableList<ProductDTO> items= FXCollections.observableArrayList();
+    ObservableList<CartItemDTO> cartItems=FXCollections.observableArrayList();
+    PlaceOrderService placeOrderService=new PlaceOrderServiceIMPL();
 
     @FXML
     private TableColumn<?, ?> colCartDiscount;
@@ -68,7 +66,7 @@ public class PlaceOrderFormController implements Initializable {
     private TableColumn<?, ?> colqQtyOnHand;
 
     @FXML
-    private TableView<?> tblCart;
+    private TableView<CartItemDTO> tblCart;
 
     @FXML
     private TableView<ProductDTO> tblProducts;
@@ -110,7 +108,7 @@ public class PlaceOrderFormController implements Initializable {
     private TextField txtProductName;
 
     @FXML
-    private Spinner<?> txtQuantity;
+    private Spinner<Integer> txtQuantity;
 
     @FXML
     private TextField txtSearchbar;
@@ -120,17 +118,75 @@ public class PlaceOrderFormController implements Initializable {
 
     @FXML
     void clickedBtnAdd(ActionEvent event) {
+        LocalDate date = LocalDate.now();
+        String formattedDate = date.format(DateTimeFormatter.ofPattern("yyyy-MM-dd"));
+        if (txtSearchbar1.getText().isEmpty() ||
+                txtProductID.getText().isEmpty() ||
+                txtProductName.getText().isEmpty() ||
+                txtDiscount.getText().isEmpty() ||
+                txtPrice.getText().isEmpty() ||
+                txtCustomerID.getText().isEmpty() ||
+                txtQuantity.getValue() == null) {
 
+            Alert alert = new Alert(Alert.AlertType.WARNING);
+            alert.setTitle("Incomplete Data");
+            alert.setHeaderText("Missing Fields");
+            alert.setContentText("Please fill all fields before adding to cart.");
+            alert.showAndWait();
+            return;
+        }else{
+            cartItems.add(new CartItemDTO(
+                    orderDetailsService.getID(),
+                    txtSearchbar1.getText(),
+                    txtProductID.getText(),
+                    txtProductName.getText(),
+                    Integer.parseInt(txtDiscount.getText()),
+                    getUnitPrice(txtPrice.getText(),txtQuantity.getValue()),
+                    txtQuantity.getValue(),
+                    formattedDate,
+                    getTotal(),
+                    txtCustomerID.getText()
+            ));
+            tblCart.setItems(cartItems);
+            getTotal();
+            clearFields();
+        }
+    }
+
+    private Double getUnitPrice(String priceText, int qty) {
+        try {
+            double price = Double.parseDouble(priceText);
+            int discount = Integer.parseInt(txtDiscount.getText());
+            double total = price * qty;
+            double discountAmount = total * discount / 100.0;
+            return total - discountAmount;
+        } catch (NumberFormatException e) {
+            // Handle invalid number input
+            return 0.0;
+        }
+
+
+    }
+
+    private Double getTotal() {
+        double netTotal=0.0;
+        for (CartItemDTO cartItemDTO:cartItems){
+            netTotal+=cartItemDTO.getPrice();
+        }
+        txtNetTotal.setText(String.valueOf(netTotal));
+        return netTotal;
     }
 
     @FXML
     void clickedBtnCheckout(ActionEvent event) {
-
+        placeOrderService.placeOrder(cartItems);
+        cartItems.clear();
+        clearFields();
     }
 
     @FXML
     void clickedBtnClear(ActionEvent event) {
-
+        clearFields();
     }
 
     @FXML
@@ -163,7 +219,7 @@ public class PlaceOrderFormController implements Initializable {
 
     @FXML
     void clickedBtnDelete(ActionEvent event) {
-
+        cartItems.clear();
     }
 
     @FXML
@@ -207,15 +263,32 @@ public class PlaceOrderFormController implements Initializable {
         colqQtyOnHand.setCellValueFactory(new PropertyValueFactory<>("qtyOnHand"));
         colItemPrice.setCellValueFactory(new PropertyValueFactory<>("price"));
 
-//        tblItem.getSelectionModel().selectedItemProperty().addListener((obs, oldVal, newVal) -> {
-//            if (newVal != null) {
-//                txtItemID.setText(newVal.getId());
-//                txtItemName.setText(newVal.getName());
-//                txtItemPrice.setText(String.valueOf(newVal.getPrice()));
-//                Qty= newVal.getStock();
-//            }
-//        });
+        tblProducts.getSelectionModel().selectedItemProperty().addListener((obs, oldVal, newVal) -> {
+            if (newVal != null) {
+                txtProductID.setText(newVal.getCode());
+                txtProductName.setText(newVal.getName());
+                txtPrice.setText(String.valueOf(newVal.getPrice()));
+                txtDiscount.setText(String.valueOf(newVal.getDis()));
+            }
+        });
 
+        SpinnerValueFactory<Integer> valueFactory = new SpinnerValueFactory.IntegerSpinnerValueFactory(1, 10, 1);
+        txtQuantity.setValueFactory(valueFactory);
+
+        colCartName.setCellValueFactory(new PropertyValueFactory<>("productName"));
+        colCartQty.setCellValueFactory(new PropertyValueFactory<>("qty"));
+        colCartDiscount.setCellValueFactory(new PropertyValueFactory<>("dis"));
+        colCartPrice.setCellValueFactory(new PropertyValueFactory<>("price"));
+
+        txtSearchbar1.setText(orderService.getID());
+    }
+
+    public void clearFields() {
+        txtPrice.clear();
+        txtProductName.clear();
+        txtProductID.clear();
+        txtDiscount.clear();
+        txtNetTotal.clear();
     }
 }
 
