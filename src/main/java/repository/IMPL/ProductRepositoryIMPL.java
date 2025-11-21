@@ -90,4 +90,21 @@ public class ProductRepositoryIMPL implements ProductRepository {
         int status =preparedStatement.executeUpdate();
         return status;
     }
+
+    @Override
+    public String getLastOrder() {
+        PreparedStatement preparedStatement= null;
+        try {
+            preparedStatement = connection.prepareStatement("SELECT * FROM productentity ORDER BY code DESC LIMIT 1");
+            ResultSet resultSet= preparedStatement.executeQuery();
+            if (resultSet.next()) {
+                String id = resultSet.getString("code");
+                return id;
+            }else{
+                return null;
+            }
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
+    }
 }

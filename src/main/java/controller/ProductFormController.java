@@ -182,7 +182,7 @@ public class ProductFormController implements Initializable {
 
     @FXML
     void btnClickedGenarateItemCode(ActionEvent event) {
-
+        txtProductCode.setText(productService.getID());
     }
 
     @FXML

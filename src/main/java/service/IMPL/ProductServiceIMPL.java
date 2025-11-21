@@ -137,4 +137,20 @@ public class ProductServiceIMPL implements ProductService {
             alert.showAndWait();
         }
     }
+
+    @Override
+    public String getID() {
+        String lastOrderId = repository.getLastOrder();
+        System.out.println(lastOrderId);
+        if (lastOrderId != null && lastOrderId.length() > 1) {
+            String numericPart = lastOrderId.substring(1);
+            int number = Integer.parseInt(numericPart);
+            number++;
+            String newOrderId = "O" + String.format("%03d", number);
+            return newOrderId;
+        } else {
+            // First order case or error fallback
+            return "O001";
+        }
+    }
 }

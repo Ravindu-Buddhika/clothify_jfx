@@ -8,4 +8,5 @@ public interface ProductService {
     public void addproduct(ProductDTO productDTO);
     public void deleteProducts(String id);
     public void updateProducts(ProductDTO productDTO);
+    public String getID();
 }

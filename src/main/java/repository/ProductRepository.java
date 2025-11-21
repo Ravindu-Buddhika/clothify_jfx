@@ -11,4 +11,5 @@ public interface ProductRepository {
     public int addproduct(ProductEntity productEntity) throws SQLException;
     public int deleteProduct(String id) throws SQLException;
     public int update(ProductEntity productEntity) throws SQLException;
+    public String getLastOrder();
 }
