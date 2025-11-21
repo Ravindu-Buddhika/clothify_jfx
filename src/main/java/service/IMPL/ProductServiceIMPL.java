@@ -57,7 +57,12 @@ public class ProductServiceIMPL implements ProductService {
                 productDTO.getQtyOnHand(),
                 productDTO.getSupplierID()
         );
-        int status=repository.addproduct(productEntity);
+        int status= 0;
+        try {
+            status = repository.addproduct(productEntity);
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
         if(status==1){
             Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
             alert.setTitle("Success");
@@ -76,7 +81,47 @@ public class ProductServiceIMPL implements ProductService {
 
     @Override
     public void deleteProducts(String id) {
-        int status= repository.deleteProduct(id);
+        int status= 0;
+        try {
+            status = repository.deleteProduct(id);
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
+
+        if(status==1){
+            Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
+            alert.setTitle("Success");
+            alert.setHeaderText("Product Deleted");
+            alert.setContentText("Deleted Successfully!");
+
+        }else {
+            Alert alert = new Alert(Alert.AlertType.ERROR); // or CONFIRMATION, WARNING, ERROR
+            alert.setTitle("Error");
+            alert.setHeaderText("Error");
+            alert.setContentText("Failed to delete data. Please check the input and try again.");
+            alert.showAndWait();
+        }
+    }
+
+    @Override
+    public void updateProducts(ProductDTO productDTO) {
+        ProductEntity productEntity=new ProductEntity(
+                productDTO.getCode(),
+                productDTO.getName(),
+                productDTO.getPrice(),
+                productDTO.getDis(),
+                productDTO.getCategory(),
+                productDTO.getGender(),
+                productDTO.getQtyOnHand(),
+                productDTO.getSupplierID()
+        );
+
+        int status=0;
+        try {
+            status=repository.update(productEntity);
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
 
         if(status==1){
             Alert alert = new Alert(Alert.AlertType.CONFIRMATION);

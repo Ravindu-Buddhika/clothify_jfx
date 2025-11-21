@@ -48,8 +48,7 @@ public class ProductRepositoryIMPL implements ProductRepository {
     }
 
     @Override
-    public int addproduct(ProductEntity productEntity) {
-        try {
+    public int addproduct(ProductEntity productEntity) throws SQLException {
             PreparedStatement preparedStatement = connection.prepareStatement(
                     "INSERT INTO productentity (code, name, price, dis, category, gender, qtyOnHand, supplierID) VALUES (?, ?, ?, ?, ?, ?, ?, ?)"
             );
@@ -66,23 +65,29 @@ public class ProductRepositoryIMPL implements ProductRepository {
             int status = preparedStatement.executeUpdate();
             return status;
 
-        } catch (SQLException e) {
-            throw new RuntimeException(e);
-        }
     }
 
     @Override
-    public int deleteProduct(String id){
+    public int deleteProduct(String id) throws SQLException {
         int status;
         PreparedStatement preparedStatement = null;
-        try {
             preparedStatement = connection.prepareStatement("DELETE FROM productentity WHERE code = ?");
             preparedStatement.setString(1, id);
 
             status=preparedStatement.executeUpdate();
-        } catch (SQLException e) {
-            throw new RuntimeException(e);
-        }
+        return status;
+    }
+
+    @Override
+    public int update(ProductEntity productEntity) throws SQLException {
+        PreparedStatement preparedStatement = connection.prepareStatement(
+                "UPDATE productentity SET qty_on_hand = ?, price = ?, dis = ? WHERE code = ?"
+        );
+        preparedStatement.setInt(1, productEntity.getQtyOnHand());
+        preparedStatement.setDouble(2, productEntity.getPrice());
+        preparedStatement.setInt(3, productEntity.getDis());
+        preparedStatement.setString(4, productEntity.getCode()); // productCode = product's unique ID
+        int status =preparedStatement.executeUpdate();
         return status;
     }
 }

@@ -187,7 +187,19 @@ public class ProductFormController implements Initializable {
 
     @FXML
     void btnClickedUpdate(ActionEvent event) {
-
+        String selectedGender = ((RadioButton) genderGroup.getSelectedToggle()).getText();
+        String selectedCategory = ((RadioButton) catagoryGroups.getSelectedToggle()).getText();
+        ProductDTO productDTO = new ProductDTO(
+                txtProductCode.getText(),
+                txtProductName.getText(),
+                Double.parseDouble(txtPrice.getText()),
+                Integer.parseInt(txtDiscount.getText()),
+                selectedCategory,
+                selectedGender,
+                Integer.parseInt(txtQuantity.getText()),
+                txtSupplier.getText()
+        );
+        productService.updateProducts(productDTO);
     }
 
     @FXML
