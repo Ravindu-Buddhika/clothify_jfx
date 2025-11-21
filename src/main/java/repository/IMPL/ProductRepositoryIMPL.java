@@ -303,4 +303,30 @@ public class ProductRepositoryIMPL implements ProductRepository {
 
         return productList;
     }
+
+    @Override
+    public ObservableList<ProductEntity> searchItems(String itemName) throws SQLException {
+        ObservableList <ProductEntity> items= FXCollections.observableArrayList();
+
+        PreparedStatement preparedStatement = connection.prepareStatement("SELECT * FROM productentity WHERE code LIKE ?");
+        preparedStatement.setString(1, "%" + itemName + "%");
+        ResultSet resultSet = preparedStatement.executeQuery();
+
+        while (resultSet.next()) {
+            ProductEntity product = new ProductEntity(
+                    resultSet.getString("code"),
+                    resultSet.getString("name"),
+                    resultSet.getDouble("price"),
+                    resultSet.getInt("dis"),
+                    resultSet.getString("category"),
+                    resultSet.getString("gender"),
+                    resultSet.getInt("qtyOnHand"),
+                    resultSet.getString("supplierID")
+            );
+            items.add(product);
+        }
+
+        return items;
+
+    }
 }

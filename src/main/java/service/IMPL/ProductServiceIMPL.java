@@ -9,6 +9,7 @@ import repository.IMPL.ProductRepositoryIMPL;
 import repository.ProductRepository;
 import service.ProductService;
 
+import java.sql.ResultSet;
 import java.sql.SQLException;
 
 public class ProductServiceIMPL implements ProductService {
@@ -146,11 +147,11 @@ public class ProductServiceIMPL implements ProductService {
             String numericPart = lastOrderId.substring(1);
             int number = Integer.parseInt(numericPart);
             number++;
-            String newOrderId = "O" + String.format("%03d", number);
+            String newOrderId = "P" + String.format("%03d", number);
             return newOrderId;
         } else {
             // First order case or error fallback
-            return "O001";
+            return "P001";
         }
     }
 
@@ -334,5 +335,36 @@ public class ProductServiceIMPL implements ProductService {
             products.add(dto);
         }
         return products;
+    }
+
+    @Override
+    public ObservableList<ProductDTO> searchItems(String itemName) {
+        ObservableList<ProductEntity> productEntities;
+        try {
+            productEntities = repository.searchItems(itemName);
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
+
+        ObservableList<ProductDTO> productDTOs = FXCollections.observableArrayList();
+
+        for (ProductEntity entity : productEntities) {
+            ProductDTO dto = new ProductDTO(
+                    entity.getCode(),
+                    entity.getName(),
+                    entity.getPrice(),
+                    entity.getDis(),
+                    entity.getCategory(),
+                    entity.getGender(),
+                    entity.getQtyOnHand(),
+                    entity.getSupplierID()
+            );
+            productDTOs.add(dto);
+        }
+
+        return productDTOs;
+
+
+
     }
 }

@@ -19,4 +19,5 @@ public interface ProductService {
     public ObservableList<ProductDTO> filterByMens();
     public ObservableList<ProductDTO> filterByWomens();
     public ObservableList<ProductDTO> filterByUnisex();
+    ObservableList<ProductDTO> searchItems(String itemName);
 }

@@ -19,4 +19,5 @@ public interface ProductRepository {
     public ObservableList<ProductEntity> filterByMens() throws SQLException;
     public ObservableList<ProductEntity> filterByWomens() throws SQLException;
     public ObservableList<ProductEntity> filterByUnisexs() throws SQLException;
+    ObservableList<ProductEntity> searchItems(String itemName) throws SQLException;
 }
