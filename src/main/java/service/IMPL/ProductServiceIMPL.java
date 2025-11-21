@@ -73,4 +73,23 @@ public class ProductServiceIMPL implements ProductService {
         }
 
     }
+
+    @Override
+    public void deleteProducts(String id) {
+        int status= repository.deleteProduct(id);
+
+        if(status==1){
+            Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
+            alert.setTitle("Success");
+            alert.setHeaderText("Product Deleted");
+            alert.setContentText("Deleted Successfully!");
+
+        }else {
+            Alert alert = new Alert(Alert.AlertType.ERROR); // or CONFIRMATION, WARNING, ERROR
+            alert.setTitle("Error");
+            alert.setHeaderText("Error");
+            alert.setContentText("Failed to delete data. Please check the input and try again.");
+            alert.showAndWait();
+        }
+    }
 }

@@ -70,4 +70,19 @@ public class ProductRepositoryIMPL implements ProductRepository {
             throw new RuntimeException(e);
         }
     }
+
+    @Override
+    public int deleteProduct(String id){
+        int status;
+        PreparedStatement preparedStatement = null;
+        try {
+            preparedStatement = connection.prepareStatement("DELETE FROM productentity WHERE code = ?");
+            preparedStatement.setString(1, id);
+
+            status=preparedStatement.executeUpdate();
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
+        return status;
+    }
 }

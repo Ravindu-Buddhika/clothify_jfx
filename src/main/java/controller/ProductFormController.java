@@ -175,7 +175,9 @@ public class ProductFormController implements Initializable {
 
     @FXML
     void btnClickedDelete(ActionEvent event) {
-
+        productService.deleteProducts(txtProductCode.getText());
+        loadProducts();
+        clearFields();
     }
 
     @FXML
