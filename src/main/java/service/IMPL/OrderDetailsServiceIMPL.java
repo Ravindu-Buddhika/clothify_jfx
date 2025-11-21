@@ -75,7 +75,7 @@ public class OrderDetailsServiceIMPL implements OrderDetailsService {
         } catch (SQLException e) {
             throw new RuntimeException(e);
         }
-        System.out.println(lastOrderId);
+        //System.out.println(lastOrderId);
         if (lastOrderId != null && lastOrderId.length() > 1) {
             String numericPart = lastOrderId.substring(1);
             int number = Integer.parseInt(numericPart);
