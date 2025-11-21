@@ -138,17 +138,23 @@ public class ProductFormController implements Initializable {
 
     @FXML
     void TopsClicked(MouseEvent event) {
-
+        item.clear();
+        item=productService.filterByTop();
+        tblProduct.setItems(item);
     }
 
     @FXML
     void accsesoriesClicked(MouseEvent event) {
-
+        item.clear();
+        item=productService.filterByAccsesories();
+        tblProduct.setItems(item);
     }
 
     @FXML
     void bottomsClicked(MouseEvent event) {
-
+        item.clear();
+        item=productService.filterByBottoms();
+        tblProduct.setItems(item);
     }
 
     @FXML
@@ -284,7 +290,9 @@ public class ProductFormController implements Initializable {
 
     @FXML
     void footwearClicked(MouseEvent event) {
-
+        item.clear();
+        item=productService.filterByFootware();
+        tblProduct.setItems(item);
     }
 
     @FXML
@@ -322,7 +330,9 @@ public class ProductFormController implements Initializable {
 
     @FXML
     void mensClicked(MouseEvent event) {
-
+        item.clear();
+        item=productService.filterByMens();
+        tblProduct.setItems(item);
     }
 
     @FXML
@@ -386,12 +396,16 @@ public class ProductFormController implements Initializable {
 
     @FXML
     void unisexClicked(MouseEvent event) {
-
+        item.clear();
+        item=productService.filterByUnisex();
+        tblProduct.setItems(item);
     }
 
     @FXML
     void womensClicked(MouseEvent event) {
-
+        item.clear();
+        item=productService.filterByWomens();
+        tblProduct.setItems(item);
     }
 
     public void loadAdmin(AdminDTO admin){
@@ -441,6 +455,13 @@ public class ProductFormController implements Initializable {
     }
 
     private void loadProducts() {
+        item.clear();
+        item=productService.getAllProducts();
+        tblProduct.getItems().clear();
+        tblProduct.setItems(item);
+    }
+
+    private void filterProducts() {
         item.clear();
         item=productService.getAllProducts();
         tblProduct.getItems().clear();

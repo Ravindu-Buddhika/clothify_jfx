@@ -12,4 +12,11 @@ public interface ProductRepository {
     public int deleteProduct(String id) throws SQLException;
     public int update(ProductEntity productEntity) throws SQLException;
     public String getLastOrder();
+    public ObservableList<ProductEntity> filterByTop() throws SQLException;
+    public ObservableList<ProductEntity> filterByBottoms() throws SQLException;
+    public ObservableList<ProductEntity> filterByFootware() throws SQLException;
+    public ObservableList<ProductEntity> filterByAccsesories() throws SQLException;
+    public ObservableList<ProductEntity> filterByMens() throws SQLException;
+    public ObservableList<ProductEntity> filterByWomens() throws SQLException;
+    public ObservableList<ProductEntity> filterByUnisexs() throws SQLException;
 }

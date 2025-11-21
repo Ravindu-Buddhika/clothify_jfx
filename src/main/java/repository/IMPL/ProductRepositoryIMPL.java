@@ -107,4 +107,200 @@ public class ProductRepositoryIMPL implements ProductRepository {
             throw new RuntimeException(e);
         }
     }
+
+    @Override
+    public ObservableList<ProductEntity> filterByTop() throws SQLException {
+        PreparedStatement preparedStatement = connection.prepareStatement(
+                "SELECT * FROM productentity WHERE category = 'Tops'"
+        );
+
+        ResultSet resultSet = preparedStatement.executeQuery();
+
+        productList.clear();
+
+        while (resultSet.next()) {
+            ProductEntity product = new ProductEntity();
+            product.setCode(resultSet.getString("code"));
+            product.setName(resultSet.getString("name"));
+            product.setPrice(resultSet.getDouble("price"));
+            product.setDis(resultSet.getInt("dis"));
+            product.setCategory(resultSet.getString("category"));
+            product.setGender(resultSet.getString("gender"));
+            product.setQtyOnHand(resultSet.getInt("qtyOnHand"));
+            product.setSupplierID(resultSet.getString("supplierID"));
+
+            productList.add(product);
+        }
+
+
+        return productList;
+    }
+
+    @Override
+    public ObservableList<ProductEntity> filterByBottoms() throws SQLException {
+        PreparedStatement preparedStatement = connection.prepareStatement(
+                "SELECT * FROM productentity WHERE category = 'Bottoms'"
+        );
+
+        ResultSet resultSet = preparedStatement.executeQuery();
+
+        productList.clear();
+
+        while (resultSet.next()) {
+            ProductEntity product = new ProductEntity();
+            product.setCode(resultSet.getString("code"));
+            product.setName(resultSet.getString("name"));
+            product.setPrice(resultSet.getDouble("price"));
+            product.setDis(resultSet.getInt("dis"));
+            product.setCategory(resultSet.getString("category"));
+            product.setGender(resultSet.getString("gender"));
+            product.setQtyOnHand(resultSet.getInt("qtyOnHand"));
+            product.setSupplierID(resultSet.getString("supplierID"));
+
+            productList.add(product);
+        }
+
+
+        return productList;
+    }
+
+    @Override
+    public ObservableList<ProductEntity> filterByFootware() throws SQLException {
+        PreparedStatement preparedStatement = connection.prepareStatement(
+                "SELECT * FROM productentity WHERE category = 'Footware'"
+        );
+
+        ResultSet resultSet = preparedStatement.executeQuery();
+
+        productList.clear();
+
+        while (resultSet.next()) {
+            ProductEntity product = new ProductEntity();
+            product.setCode(resultSet.getString("code"));
+            product.setName(resultSet.getString("name"));
+            product.setPrice(resultSet.getDouble("price"));
+            product.setDis(resultSet.getInt("dis"));
+            product.setCategory(resultSet.getString("category"));
+            product.setGender(resultSet.getString("gender"));
+            product.setQtyOnHand(resultSet.getInt("qtyOnHand"));
+            product.setSupplierID(resultSet.getString("supplierID"));
+
+            productList.add(product);
+        }
+
+
+        return productList;
+    }
+
+    @Override
+    public ObservableList<ProductEntity> filterByAccsesories() throws SQLException {
+        PreparedStatement preparedStatement = connection.prepareStatement(
+                "SELECT * FROM productentity WHERE category = 'Accsesories'"
+        );
+
+        ResultSet resultSet = preparedStatement.executeQuery();
+
+        productList.clear();
+
+        while (resultSet.next()) {
+            ProductEntity product = new ProductEntity();
+            product.setCode(resultSet.getString("code"));
+            product.setName(resultSet.getString("name"));
+            product.setPrice(resultSet.getDouble("price"));
+            product.setDis(resultSet.getInt("dis"));
+            product.setCategory(resultSet.getString("category"));
+            product.setGender(resultSet.getString("gender"));
+            product.setQtyOnHand(resultSet.getInt("qtyOnHand"));
+            product.setSupplierID(resultSet.getString("supplierID"));
+
+            productList.add(product);
+        }
+
+
+        return productList;
+    }
+
+    @Override
+    public ObservableList<ProductEntity> filterByMens() throws SQLException {
+        PreparedStatement preparedStatement = connection.prepareStatement(
+                "SELECT * FROM productentity WHERE gender = 'Mens'"
+        );
+
+        ResultSet resultSet = preparedStatement.executeQuery();
+
+        productList.clear();
+
+        while (resultSet.next()) {
+            ProductEntity product = new ProductEntity();
+            product.setCode(resultSet.getString("code"));
+            product.setName(resultSet.getString("name"));
+            product.setPrice(resultSet.getDouble("price"));
+            product.setDis(resultSet.getInt("dis"));
+            product.setCategory(resultSet.getString("category"));
+            product.setGender(resultSet.getString("gender"));
+            product.setQtyOnHand(resultSet.getInt("qtyOnHand"));
+            product.setSupplierID(resultSet.getString("supplierID"));
+
+            productList.add(product);
+        }
+
+
+        return productList;
+    }
+
+    @Override
+    public ObservableList<ProductEntity> filterByWomens() throws SQLException {
+        PreparedStatement preparedStatement = connection.prepareStatement(
+                "SELECT * FROM productentity WHERE gender = 'Womens'"
+        );
+
+        ResultSet resultSet = preparedStatement.executeQuery();
+
+        productList.clear();
+
+        while (resultSet.next()) {
+            ProductEntity product = new ProductEntity();
+            product.setCode(resultSet.getString("code"));
+            product.setName(resultSet.getString("name"));
+            product.setPrice(resultSet.getDouble("price"));
+            product.setDis(resultSet.getInt("dis"));
+            product.setCategory(resultSet.getString("category"));
+            product.setGender(resultSet.getString("gender"));
+            product.setQtyOnHand(resultSet.getInt("qtyOnHand"));
+            product.setSupplierID(resultSet.getString("supplierID"));
+
+            productList.add(product);
+        }
+
+
+        return productList;
+    }
+
+    @Override
+    public ObservableList<ProductEntity> filterByUnisexs() throws SQLException {
+        PreparedStatement preparedStatement = connection.prepareStatement(
+                "SELECT * FROM productentity WHERE gender = 'Unisex'"
+        );
+
+        ResultSet resultSet = preparedStatement.executeQuery();
+
+        productList.clear();
+
+        while (resultSet.next()) {
+            ProductEntity product = new ProductEntity();
+            product.setCode(resultSet.getString("code"));
+            product.setName(resultSet.getString("name"));
+            product.setPrice(resultSet.getDouble("price"));
+            product.setDis(resultSet.getInt("dis"));
+            product.setCategory(resultSet.getString("category"));
+            product.setGender(resultSet.getString("gender"));
+            product.setQtyOnHand(resultSet.getInt("qtyOnHand"));
+            product.setSupplierID(resultSet.getString("supplierID"));
+
+            productList.add(product);
+        }
+
+
+        return productList;
+    }
 }
