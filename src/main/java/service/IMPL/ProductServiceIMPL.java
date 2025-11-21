@@ -21,6 +21,7 @@ public class ProductServiceIMPL implements ProductService {
         }
     }
 
+    @Override
     public ObservableList<ProductDTO> getAllProducts(){
         ObservableList<ProductEntity> allProducts=repository.getAllProducts();
         ObservableList<ProductDTO> products = FXCollections.observableArrayList();

@@ -153,7 +153,6 @@ public class ProductFormController implements Initializable {
 
     @FXML
     void btnClickedAdd(ActionEvent event) {
-        clearFields();
     }
 
     @FXML
