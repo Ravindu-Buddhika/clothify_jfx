@@ -12,7 +12,10 @@ import javafx.scene.control.TextField;
 import javafx.scene.input.KeyEvent;
 import javafx.stage.Stage;
 import model.dto.AdminDTO;
+import model.dto.CustomerDTO;
 import model.dto.StaffDTO;
+import service.CustomerService;
+import service.IMPL.CustomerServiceIMPL;
 
 import java.io.IOException;
 
@@ -20,6 +23,7 @@ public class PlaceOrderFormController {
     Stage stage=new Stage();
     AdminDTO adminDTO=null;
     StaffDTO staffDTO=null;
+    CustomerService customerService=new CustomerServiceIMPL();
 
     @FXML
     private TableView<?> tblCart;
@@ -122,11 +126,22 @@ public class PlaceOrderFormController {
 
     @FXML
     void searchCustomer(KeyEvent event) {
+        String number = txtContactNumber.getText();
+        if (number.length() == 10) {
+            CustomerDTO customer = customerService.searchCustomer(number);
+            if (customer != null) {
+                txtCustomerID.setText(customer.getId());
+                txtCustomerName.setText(customer.getName());
+                txtCity.setText(customer.getCity());
+                txtEmail.setText(customer.getEmail());
+                txtLoyaltyPoints.setText(String.valueOf(customer.getLoyalty()));
+            }
+        }
 
     }
 
     @FXML
-    void searchcustomer(KeyEvent event) {
+    void searchItem(KeyEvent event) {
 
     }
 

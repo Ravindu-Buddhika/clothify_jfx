@@ -9,5 +9,6 @@ public interface CustomerService {
     public void deleteCustomer(String id);
     public void updateCustomer(CustomerDTO customerDTO);
     public String getID();
+    public CustomerDTO searchCustomer(String name);
 
 }

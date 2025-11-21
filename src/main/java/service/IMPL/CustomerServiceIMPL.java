@@ -9,6 +9,7 @@ import repository.CustomerRepository;
 import repository.IMPL.CustomerRepositoryIMPL;
 import service.CustomerService;
 
+import java.sql.ResultSet;
 import java.sql.SQLException;
 
 public class CustomerServiceIMPL implements CustomerService {
@@ -159,5 +160,31 @@ public class CustomerServiceIMPL implements CustomerService {
             // First order case or error fallback
             return "P001";
         }
+    }
+
+    @Override
+    public CustomerDTO searchCustomer(String name) {
+        CustomerDTO customer = null;
+        ResultSet resultSet = null;
+        try {
+            resultSet = customerRepository.searchCustomer(name);
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
+        try {
+            if (resultSet.next()) {
+                customer = new CustomerDTO(
+                        resultSet.getString("id"),
+                        resultSet.getString("name"),
+                        resultSet.getString("mobileNumber"),
+                        resultSet.getString("email"),
+                        resultSet.getString("city"),
+                        resultSet.getInt("loyalty")
+                );
+            }
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
+        return customer;
     }
 }

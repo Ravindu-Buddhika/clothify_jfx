@@ -133,7 +133,7 @@
                   <TableColumn prefWidth="95.99992675781255" text="Price" />
               </columns>
             </TableView>
-            <TextField fx:id="txtSearchbar" layoutX="462.0" layoutY="147.0" onKeyReleased="#searchcustomer" prefHeight="26.0" prefWidth="523.0" promptText="EnterI Item Code" />
+            <TextField fx:id="txtSearchbar" layoutX="462.0" layoutY="147.0" onKeyReleased="#searchItem" prefHeight="26.0" prefWidth="523.0" promptText="EnterI Item Code" />
             <Label layoutX="808.0" layoutY="103.0" prefHeight="22.0" prefWidth="82.0" text="Customer ID" textFill="WHITE">
                <font>
                   <Font name="Impact" size="16.0" />

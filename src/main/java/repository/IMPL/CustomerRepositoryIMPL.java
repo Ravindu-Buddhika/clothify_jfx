@@ -15,7 +15,6 @@ import java.sql.SQLException;
 public class CustomerRepositoryIMPL implements CustomerRepository {
 
     ObservableList<CustomerEntity> customerList =FXCollections.observableArrayList();
-    ObservableList<ProductEntity> productList = FXCollections.observableArrayList();
     Connection connection= DBConnection.getInstance().getConnection();
 
     public CustomerRepositoryIMPL() throws SQLException {
@@ -99,5 +98,14 @@ public class CustomerRepositoryIMPL implements CustomerRepository {
         }else{
             return null;
         }
+    }
+
+    @Override
+    public ResultSet searchCustomer(String number) throws SQLException {
+        PreparedStatement preparedStatement = connection.prepareStatement("SELECT * FROM customerentity WHERE mobileNumber = ?");
+        preparedStatement.setString(1, number);
+        ResultSet resultSet = preparedStatement.executeQuery();
+        return resultSet;
+
     }
 }
