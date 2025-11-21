@@ -6,4 +6,5 @@ import model.entity.ProductEntity;
 
 public interface ProductRepository {
     public ObservableList<ProductEntity> getAllProducts();
+    public int addproduct(ProductEntity productEntity);
 }

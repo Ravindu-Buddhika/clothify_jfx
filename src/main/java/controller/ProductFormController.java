@@ -153,6 +153,24 @@ public class ProductFormController implements Initializable {
 
     @FXML
     void btnClickedAdd(ActionEvent event) {
+
+        String selectedGender = ((RadioButton) genderGroup.getSelectedToggle()).getText();
+        String selectedCategory = ((RadioButton) catagoryGroups.getSelectedToggle()).getText();
+
+        ProductDTO productDTO = new ProductDTO(
+                txtProductCode.getText(),
+                txtProductName.getText(),
+                Double.parseDouble(txtPrice.getText()),
+                Integer.parseInt(txtDiscount.getText()),
+                selectedCategory,
+                selectedGender,
+                Integer.parseInt(txtQuantity.getText()),
+                txtSupplier.getText()
+        );
+
+        productService.addproduct(productDTO);
+        loadProducts();
+        clearFields();
     }
 
     @FXML
@@ -411,6 +429,7 @@ public class ProductFormController implements Initializable {
     private void loadProducts() {
         item.clear();
         item=productService.getAllProducts();
+        tblProduct.getItems().clear();
         tblProduct.setItems(item);
     }
 

@@ -3,6 +3,7 @@ package repository.IMPL;
 import database.DBConnection;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
+import model.dto.ProductDTO;
 import model.entity.ProductEntity;
 import repository.ProductRepository;
 
@@ -40,6 +41,31 @@ public class ProductRepositoryIMPL implements ProductRepository {
             }
 
             return productList;
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
+
+    }
+
+    @Override
+    public int addproduct(ProductEntity productEntity) {
+        try {
+            PreparedStatement preparedStatement = connection.prepareStatement(
+                    "INSERT INTO productentity (code, name, price, dis, category, gender, qtyOnHand, supplierID) VALUES (?, ?, ?, ?, ?, ?, ?, ?)"
+            );
+
+            preparedStatement.setString(1, productEntity.getCode());
+            preparedStatement.setString(2, productEntity.getName());
+            preparedStatement.setDouble(3, productEntity.getPrice());
+            preparedStatement.setInt(4, productEntity.getDis());
+            preparedStatement.setString(5, productEntity.getCategory());
+            preparedStatement.setString(6, productEntity.getGender());
+            preparedStatement.setInt(7, productEntity.getQtyOnHand());
+            preparedStatement.setString(8, productEntity.getSupplierID());
+
+            int status = preparedStatement.executeUpdate();
+            return status;
+
         } catch (SQLException e) {
             throw new RuntimeException(e);
         }
