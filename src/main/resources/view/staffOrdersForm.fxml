@@ -1,0 +1,77 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane prefHeight="754.0" prefWidth="1243.0" style="-fx-background-color: linear-gradient(to bottom, #000000 0%, #666666 100%);;" xmlns="http://javafx.com/javafx/25" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.OrdersFormController">
+    <children>
+        <AnchorPane prefHeight="50.0" prefWidth="1249.0" style="-fx-background-color: #4C4B4B;">
+            <children>
+                <Button layoutX="1155.0" layoutY="13.0" mnemonicParsing="false" onAction="#clickedSingOut" style="-fx-background-color: C82E2E;" text="Sing Out" textFill="WHITE">
+                    <font>
+                        <Font name="Impact" size="13.0" />
+                    </font>
+                </Button>
+            </children></AnchorPane>
+        <AnchorPane layoutY="50.0" prefHeight="706.0" prefWidth="200.0" style="-fx-background-color: #D9D9D9;">
+            <children>
+                <Label layoutX="29.0" layoutY="47.0" onMouseClicked="#dashbodeClicked" text="Dashbode">
+                    <font>
+                        <Font name="Impact" size="26.0" />
+                    </font>
+                </Label>
+                <Label layoutX="31.0" layoutY="103.0" onMouseClicked="#orderClicked" text="Order">
+                    <font>
+                        <Font name="Impact" size="26.0" />
+                    </font>
+                </Label>
+                <Label layoutX="32.0" layoutY="218.0" onMouseClicked="#inventoryClicked" text="Inventoey">
+                    <font>
+                        <Font name="Impact" size="26.0" />
+                    </font>
+                </Label>
+                <Label layoutX="30.0" layoutY="159.0" onMouseClicked="#customersClicked" text="Customers">
+                    <font>
+                        <Font name="Impact" size="26.0" />
+                    </font>
+                </Label>
+                <Label layoutX="33.0" layoutY="288.0" onMouseClicked="#OrdersClicked" text="Orders">
+                    <font>
+                        <Font name="Impact" size="26.0" />
+                    </font>
+                </Label>
+            </children></AnchorPane>
+        <TableView fx:id="tblOrder" layoutX="229.0" layoutY="110.0" prefHeight="298.0" prefWidth="498.0">
+            <columns>
+                <TableColumn fx:id="colOrderId" prefWidth="86.4000244140625" text="Oder ID" />
+                <TableColumn fx:id="colOrderDate" prefWidth="156.79995727539062" text="Date" />
+                <TableColumn fx:id="colOrderCustomer" prefWidth="120.79995727539062" text="Customer ID" />
+                <TableColumn fx:id="colOrderTotal" prefWidth="132.79996337890623" text="Total" />
+            </columns>
+        </TableView>
+        <TextField layoutX="1048.0" layoutY="66.0" onKeyReleased="#sherchBYOrderID" prefHeight="26.0" prefWidth="187.0" promptText="Enter product Code" style="-fx-background-radius: 10;" />
+        <TableView fx:id="tblCustomer" layoutX="229.0" layoutY="430.0" prefHeight="67.0" prefWidth="1006.0">
+            <columns>
+                <TableColumn fx:id="colCustomerID" prefWidth="86.4000244140625" text="Customer ID" />
+                <TableColumn fx:id="colCustomerName" prefWidth="176.0" text="Name" />
+                <TableColumn fx:id="colCustomerMobile" prefWidth="168.800048828125" text="Mobile Number" />
+                <TableColumn fx:id="colCustomerEmail" prefWidth="260.79998779296875" text="Email" />
+                <TableColumn fx:id="colCustomerCity" prefWidth="149.59991455078125" text="City" />
+                <TableColumn fx:id="colCustomerLoyalty" prefWidth="164.800048828125" text="Loyalty" />
+            </columns>
+        </TableView>
+        <TableView fx:id="tblorderDetails" layoutX="732.0" layoutY="110.0" prefHeight="298.0" prefWidth="498.0">
+            <columns>
+                <TableColumn fx:id="colDetailsProductCode" prefWidth="124.7999267578125" text="Product ID" />
+                <TableColumn fx:id="coldDetailsQty" prefWidth="152.800048828125" text="Quantity" />
+                <TableColumn fx:id="colDetailsDiscount" prefWidth="111.19989013671875" text="Discount" />
+                <TableColumn fx:id="colDetailsPrice" prefWidth="111.2001953125" text="Price" />
+            </columns>
+        </TableView>
+    </children>
+</AnchorPane>

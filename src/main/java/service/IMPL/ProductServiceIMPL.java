@@ -1,0 +1,370 @@
+package service.IMPL;
+
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
+import javafx.scene.control.Alert;
+import model.dto.ProductDTO;
+import model.entity.ProductEntity;
+import repository.IMPL.ProductRepositoryIMPL;
+import repository.ProductRepository;
+import service.ProductService;
+
+import java.sql.ResultSet;
+import java.sql.SQLException;
+
+public class ProductServiceIMPL implements ProductService {
+    ProductRepository repository;
+
+    {
+        try {
+            repository = new ProductRepositoryIMPL();
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
+    }
+
+    @Override
+    public ObservableList<ProductDTO> getAllProducts(){
+        ObservableList<ProductEntity> allProducts=repository.getAllProducts();
+        ObservableList<ProductDTO> products = FXCollections.observableArrayList();
+
+        for (ProductEntity entity : allProducts) {
+            ProductDTO dto = new ProductDTO(
+                    entity.getCode(),
+                    entity.getName(),
+                    entity.getPrice(),
+                    entity.getDis(),
+                    entity.getCategory(),
+                    entity.getGender(),
+                    entity.getQtyOnHand(),
+                    entity.getSupplierID()
+            );
+            products.add(dto);
+        }
+
+
+        return products;
+    }
+
+    public void addproduct(ProductDTO productDTO){
+
+        ProductEntity productEntity=new ProductEntity(
+                productDTO.getCode(),
+                productDTO.getName(),
+                productDTO.getPrice(),
+                productDTO.getDis(),
+                productDTO.getCategory(),
+                productDTO.getGender(),
+                productDTO.getQtyOnHand(),
+                productDTO.getSupplierID()
+        );
+        int status= 0;
+        try {
+            status = repository.addproduct(productEntity);
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
+        if(status==1){
+            Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
+            alert.setTitle("Success");
+            alert.setHeaderText("Product Added");
+            alert.setContentText("Data inserted successfully!");
+
+        }else {
+            Alert alert = new Alert(Alert.AlertType.ERROR); // or CONFIRMATION, WARNING, ERROR
+            alert.setTitle("Error");
+            alert.setHeaderText("Error");
+            alert.setContentText("Failed to insert data. Please check the input and try again.");
+            alert.showAndWait();
+        }
+
+    }
+
+    @Override
+    public void deleteProducts(String id) {
+        int status= 0;
+        try {
+            status = repository.deleteProduct(id);
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
+
+        if(status==1){
+            Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
+            alert.setTitle("Success");
+            alert.setHeaderText("Product Deleted");
+            alert.setContentText("Deleted Successfully!");
+
+        }else {
+            Alert alert = new Alert(Alert.AlertType.ERROR); // or CONFIRMATION, WARNING, ERROR
+            alert.setTitle("Error");
+            alert.setHeaderText("Error");
+            alert.setContentText("Failed to delete data. Please check the input and try again.");
+            alert.showAndWait();
+        }
+    }
+
+    @Override
+    public void updateProducts(ProductDTO productDTO) {
+        ProductEntity productEntity=new ProductEntity(
+                productDTO.getCode(),
+                productDTO.getName(),
+                productDTO.getPrice(),
+                productDTO.getDis(),
+                productDTO.getCategory(),
+                productDTO.getGender(),
+                productDTO.getQtyOnHand(),
+                productDTO.getSupplierID()
+        );
+
+        int status=0;
+        try {
+            status=repository.update(productEntity);
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
+
+        if(status==1){
+            Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
+            alert.setTitle("Success");
+            alert.setHeaderText("Product Deleted");
+            alert.setContentText("Deleted Successfully!");
+
+        }else {
+            Alert alert = new Alert(Alert.AlertType.ERROR); // or CONFIRMATION, WARNING, ERROR
+            alert.setTitle("Error");
+            alert.setHeaderText("Error");
+            alert.setContentText("Failed to delete data. Please check the input and try again.");
+            alert.showAndWait();
+        }
+    }
+
+    @Override
+    public String getID() {
+        String lastOrderId = repository.getLastOrder();
+        System.out.println(lastOrderId);
+        if (lastOrderId != null && lastOrderId.length() > 1) {
+            String numericPart = lastOrderId.substring(1);
+            int number = Integer.parseInt(numericPart);
+            number++;
+            String newOrderId = "P" + String.format("%03d", number);
+            return newOrderId;
+        } else {
+            // First order case or error fallback
+            return "P001";
+        }
+    }
+
+    @Override
+    public ObservableList<ProductDTO> filterByTop() {
+        ObservableList<ProductEntity> allProducts= null;
+        try {
+            allProducts = repository.filterByTop();
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
+        ObservableList<ProductDTO> products = FXCollections.observableArrayList();
+
+        for (ProductEntity entity : allProducts) {
+            ProductDTO dto = new ProductDTO(
+                    entity.getCode(),
+                    entity.getName(),
+                    entity.getPrice(),
+                    entity.getDis(),
+                    entity.getCategory(),
+                    entity.getGender(),
+                    entity.getQtyOnHand(),
+                    entity.getSupplierID()
+            );
+            products.add(dto);
+        }
+        return products;
+    }
+
+    @Override
+    public ObservableList<ProductDTO> filterByBottoms() {
+        ObservableList<ProductEntity> allProducts= null;
+        try {
+            allProducts = repository.filterByBottoms();
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
+        ObservableList<ProductDTO> products = FXCollections.observableArrayList();
+
+        for (ProductEntity entity : allProducts) {
+            ProductDTO dto = new ProductDTO(
+                    entity.getCode(),
+                    entity.getName(),
+                    entity.getPrice(),
+                    entity.getDis(),
+                    entity.getCategory(),
+                    entity.getGender(),
+                    entity.getQtyOnHand(),
+                    entity.getSupplierID()
+            );
+            products.add(dto);
+        }
+        return products;
+    }
+
+    @Override
+    public ObservableList<ProductDTO> filterByFootware() {
+        ObservableList<ProductEntity> allProducts= null;
+        try {
+            allProducts = repository.filterByFootware();
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
+        ObservableList<ProductDTO> products = FXCollections.observableArrayList();
+
+        for (ProductEntity entity : allProducts) {
+            ProductDTO dto = new ProductDTO(
+                    entity.getCode(),
+                    entity.getName(),
+                    entity.getPrice(),
+                    entity.getDis(),
+                    entity.getCategory(),
+                    entity.getGender(),
+                    entity.getQtyOnHand(),
+                    entity.getSupplierID()
+            );
+            products.add(dto);
+        }
+        return products;
+    }
+
+    @Override
+    public ObservableList<ProductDTO> filterByAccsesories() {
+        ObservableList<ProductEntity> allProducts= null;
+        try {
+            allProducts = repository.filterByAccsesories();
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
+        ObservableList<ProductDTO> products = FXCollections.observableArrayList();
+
+        for (ProductEntity entity : allProducts) {
+            ProductDTO dto = new ProductDTO(
+                    entity.getCode(),
+                    entity.getName(),
+                    entity.getPrice(),
+                    entity.getDis(),
+                    entity.getCategory(),
+                    entity.getGender(),
+                    entity.getQtyOnHand(),
+                    entity.getSupplierID()
+            );
+            products.add(dto);
+        }
+        return products;
+    }
+
+    @Override
+    public ObservableList<ProductDTO> filterByMens() {
+        ObservableList<ProductEntity> allProducts= null;
+        try {
+            allProducts = repository.filterByMens();
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
+        ObservableList<ProductDTO> products = FXCollections.observableArrayList();
+
+        for (ProductEntity entity : allProducts) {
+            ProductDTO dto = new ProductDTO(
+                    entity.getCode(),
+                    entity.getName(),
+                    entity.getPrice(),
+                    entity.getDis(),
+                    entity.getCategory(),
+                    entity.getGender(),
+                    entity.getQtyOnHand(),
+                    entity.getSupplierID()
+            );
+            products.add(dto);
+        }
+        return products;
+    }
+
+    @Override
+    public ObservableList<ProductDTO> filterByWomens() {
+        ObservableList<ProductEntity> allProducts= null;
+        try {
+            allProducts = repository.filterByWomens();
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
+        ObservableList<ProductDTO> products = FXCollections.observableArrayList();
+
+        for (ProductEntity entity : allProducts) {
+            ProductDTO dto = new ProductDTO(
+                    entity.getCode(),
+                    entity.getName(),
+                    entity.getPrice(),
+                    entity.getDis(),
+                    entity.getCategory(),
+                    entity.getGender(),
+                    entity.getQtyOnHand(),
+                    entity.getSupplierID()
+            );
+            products.add(dto);
+        }
+        return products;
+    }
+
+    @Override
+    public ObservableList<ProductDTO> filterByUnisex() {
+        ObservableList<ProductEntity> allProducts= null;
+        try {
+            allProducts = repository.filterByUnisexs();
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
+        ObservableList<ProductDTO> products = FXCollections.observableArrayList();
+
+        for (ProductEntity entity : allProducts) {
+            ProductDTO dto = new ProductDTO(
+                    entity.getCode(),
+                    entity.getName(),
+                    entity.getPrice(),
+                    entity.getDis(),
+                    entity.getCategory(),
+                    entity.getGender(),
+                    entity.getQtyOnHand(),
+                    entity.getSupplierID()
+            );
+            products.add(dto);
+        }
+        return products;
+    }
+
+    @Override
+    public ObservableList<ProductDTO> searchItems(String itemName) {
+        ObservableList<ProductEntity> productEntities;
+        try {
+            productEntities = repository.searchItems(itemName);
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
+
+        ObservableList<ProductDTO> productDTOs = FXCollections.observableArrayList();
+
+        for (ProductEntity entity : productEntities) {
+            ProductDTO dto = new ProductDTO(
+                    entity.getCode(),
+                    entity.getName(),
+                    entity.getPrice(),
+                    entity.getDis(),
+                    entity.getCategory(),
+                    entity.getGender(),
+                    entity.getQtyOnHand(),
+                    entity.getSupplierID()
+            );
+            productDTOs.add(dto);
+        }
+
+        return productDTOs;
+
+
+
+    }
+}
